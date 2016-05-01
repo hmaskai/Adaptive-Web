@@ -18,7 +18,7 @@ class MyFunction {
 		
 		//$result = $database->query($q);
 		$result = mysql_query($q);
-		$r = mysql_fetch_array($result);
+		//$r = mysql_fetch_array($result);
 
 		$str = "";
 
@@ -380,6 +380,80 @@ class MyFunction {
 		
 		return $final;
 		
+	}
+	
+	public function recommend_topics($uid){
+		
+		$q = "SELECT lower(q.tags) tags FROM questions q, student_questions s where q.question_id = s.question_id and q.correct_answer != s.answer and s.user_id = ".$uid;
+		$result = mysql_query($q);
+		$str = "";
+
+		while($row = mysql_fetch_array($result)){
+			$str = $str.",".$row["tags"];
+		}
+		$str = str_replace(", ", ",", $str);
+		$str = substr($str, 1);
+
+		//$str = str_replace(",", ", ", $str);
+		
+		$Class = "Class";
+		$Object = "Object";
+		$Variables = "Variables";
+		$Wrapper_Classes = "Wrapper Classes";
+		$String = "String";
+		$Constants = "Constants";
+		$Primitive_Data_Type = "Primitive Data Type";
+		$Boolean_Expressions = "Boolean Expressions";
+		$Arithmetic_Expressions = "Arithmetic Expressions";
+		$Two_Dimensional_Array = "Two Dimensional Array";
+		$ArrayList = "ArrayList";
+		$Arrays = "Array";
+		$Exceptions = "Exceptions";
+		$Nested_Loops = "Nested Loops";
+		$For_Loop = "For Loop";
+		$Do_While_Loop = "Do-While Loop";
+		$Switch_Statement = "Switch Statement";
+		$Decision_Types = "Decision Types";
+		$Interface = "Interface";
+		$Inheritance = "Inheritance";
+
+		$frequency = array(
+			$Class => substr_count(strtolower($str),strtolower($Class)),
+			$Object => substr_count(strtolower($str),strtolower($Object)),
+			$Variables => substr_count(strtolower($str),strtolower($Variables)),
+			$Wrapper_Classes => substr_count(strtolower($str),strtolower($Wrapper_Classes)),
+			$String => substr_count(strtolower($str),strtolower($String)),
+			$Constants => substr_count(strtolower($str),strtolower($Constants)),
+			$Primitive_Data_Type => substr_count(strtolower($str),strtolower($Primitive_Data_Type)),
+			$Boolean_Expressions => substr_count(strtolower($str),strtolower($Boolean_Expressions)),
+			$Arithmetic_Expressions => substr_count(strtolower($str),strtolower($Arithmetic_Expressions)),
+			$Two_Dimensional_Array => substr_count(strtolower($str),strtolower($Two_Dimensional_Array)),
+			$ArrayList => substr_count(strtolower($str),strtolower($ArrayList)),
+			$Arrays => substr_count(strtolower($str),strtolower($Arrays)),
+			$Exceptions => substr_count(strtolower($str),strtolower($Exceptions)),
+			$Nested_Loops => substr_count(strtolower($str),strtolower($Nested_Loops)),
+			$For_Loop => substr_count(strtolower($str),strtolower($For_Loop)),
+			$Do_While_Loop => substr_count(strtolower($str),strtolower($Do_While_Loop)),
+			$Switch_Statement => substr_count(strtolower($str),strtolower($Switch_Statement)),
+			$Decision_Types => substr_count(strtolower($str),strtolower($Decision_Types)),
+			$Interface => substr_count(strtolower($str),strtolower($Interface)),
+			$Inheritance => substr_count(strtolower($str),strtolower($Inheritance)),
+
+		);
+		
+		arsort($frequency);
+		//print_r($frequency);
+		
+		$output = "";
+		$i = 0;
+		foreach($frequency as $key => $value){
+			$output .= $key.",";
+			$i++;
+			if($i == 5)
+				break;
+		}
+		$output = substr($output, 0, -1);
+		return $output;
 	}
 }
 	$functions = new MyFunction();
