@@ -1,9 +1,9 @@
 function dashboard(id, fData){
     var barColor = 'steelblue';
-    function segColor(c){return {Class:"#41AB5D", Object:"#807DBA",Variables:"#E38E2B", Wrapper_Classes:"#98ABC5", String:"#8A89A6", Constants:"#6B486B", Primitive_Data_Type:"#D0743C", Boolean_Expressions:"#FF8C00", Arithmetic_Expressions:"#74C476", Two_Dimensional_Array:"#DADAEB", ArrayList:"#FD8D3C", Array:"#FDD0A2", Exceptions:"#756BB1", Nested_Loops:"#C6DBEF", For_Loop:"#74C476", Do_While_Loop:"#C6DBEF", Switch_Statement:"#A1D99B", Decision_Types:"#E6550D", Interface:"#969696", Inheritance:"#807dba"}[c]; }
+    function segColor(c){return {Class:"#41AB5D", Object:"#807DBA",Variables:"#E38E2B", Wrapper:"#98ABC5", String:"#8A89A6", Constants:"#6B486B", Primitive_Data_Type:"#D0743C", Boolean_Expressions:"#FF8C00", Arithmetic_Expressions:"#74C476", Two_Dimensional_Array:"#DADAEB", ArrayList:"#FD8D3C", Arrays:"#FDD0A2", Exceptions:"#756BB1", Nested_Loops:"#C6DBEF", For_Loop:"#74C476", Do_While_Loop:"#C6DBEF", Switch_Statement:"#A1D99B", Decision_Types:"#E6550D", Interface:"#969696", Inheritance:"#807dba"}[c]; }
     
     // compute total for each state.
-    fData.forEach(function(d){d.total=d.freq.Class+d.freq.Object+d.freq.Variables+d.freq.Wrapper_Classes+d.freq.String+d.freq.Constants+d.freq.Primitive_Data_Type+d.freq.Boolean_Expressions+d.freq.Arithmetic_Expressions+d.freq.Two_Dimensional_Array+d.freq.ArrayList+d.freq.Array+d.freq.Exceptions+d.freq.Nested_Loops+d.freq.For_Loop+d.freq.Do_While_Loop+d.freq.Switch_Statement+d.freq.Decision_Types+d.freq.Interface+d.freq.Inheritance;;});
+    fData.forEach(function(d){d.total=d.freq.Class+d.freq.Object+d.freq.Variables+d.freq.Wrapper+d.freq.String+d.freq.Constants+d.freq.Primitive_Data_Type+d.freq.Boolean_Expressions+d.freq.Arithmetic_Expressions+d.freq.Two_Dimensional_Array+d.freq.ArrayList+d.freq.Arrays+d.freq.Exceptions+d.freq.Nested_Loops+d.freq.For_Loop+d.freq.Do_While_Loop+d.freq.Switch_Statement+d.freq.Decision_Types+d.freq.Interface+d.freq.Inheritance;});
     
     // function to handle histogram.
     function histoGram(fD){
@@ -183,7 +183,7 @@ function dashboard(id, fData){
     }
     
     // calculate total frequency by segment for all state.
-    var tF = ['Class','Object','Variables','Wrapper_Classes','String','Constants','Primitive_Data_Type','Boolean_Expressions','Arithmetic_Expressions','Two_Dimensional_Array','ArrayList','Array','Exceptions','Nested_Loops','For_Loop','Do_While_Loop','Switch_Statement','Decision_Types','Interface','Inheritance'].map(function(d){ 
+    var tF = ['Class','Object','Variables','Wrapper','String','Constants','Primitive_Data_Type','Boolean_Expressions','Arithmetic_Expressions','Two_Dimensional_Array','ArrayList','Arrays','Exceptions','Nested_Loops','For_Loop','Do_While_Loop','Switch_Statement','Decision_Types','Interface','Inheritance'].map(function(d){ 
         return {type:d, freq: d3.sum(fData.map(function(t){ return t.freq[d];}))}; 
     });    
     

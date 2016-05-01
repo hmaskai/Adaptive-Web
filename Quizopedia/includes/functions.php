@@ -356,7 +356,7 @@ class MyFunction {
 		
 		//$result = $database->query($q);
 		$result = mysql_query("select lower(tags) as tags from questions where type = 'Q'");
-		$r = mysql_fetch_array($result);
+		//$r = mysql_fetch_array($result);
 
 		$str = "";
 
@@ -364,9 +364,10 @@ class MyFunction {
 			$str = $str.",".$row["tags"];
 		}
 		$str = str_replace(", ", ",", $str);
+		$str = str_replace(" ,", ",", $str);
 		$str = substr($str, 1);
 
-		$str = str_replace(",", ", ", $str);
+		//$str = str_replace(",", ", ", $str);
 		//echo $str."</br>";
 		// formatting string complete
 
@@ -383,7 +384,7 @@ class MyFunction {
 		$Arithmetic_Expressions = "Arithmetic Expressions";
 		$Two_Dimensional_Array = "Two Dimensional Array";
 		$ArrayList = "ArrayList";
-		$Arrays = "Array";
+		$Arrays = "Arrays";
 		$Exceptions = "Exceptions";
 		$Nested_Loops = "Nested Loops";
 		$For_Loop = "For Loop";
@@ -478,6 +479,7 @@ class MyFunction {
 			$final = $final.$Interface.":".round($Interface_count!=0 ? (100 * $Class_count_user)/$Interface_count : 0, 2).", ";
 			$final = $final.$Inheritance.":".round($Inheritance_count!=0 ? (100 * $Class_count_user)/$Inheritance_count : 0, 2)."}},";
 		}
+		$final = substr($final, 0, -1);
 		$final .= ']';
 		
 		//$final = str_replace("Wrapper Classes", "Wrapper_Classes", $final);
