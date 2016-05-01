@@ -297,6 +297,17 @@
 		 ?>
 	<div style="width:50%;text-align:center;float:left;">	 
 	<text style="font-size:20px;"><b>Class Performance(Quiz-wise)</b></text>
+	<div class='my-legend' style="margin-left:30%;">
+		<div class='legend-scale'>
+		<span style='background:#1F77B4;'></span>Unattempted &nbsp
+		</div>
+		<div class='legend-scale'>
+			<span style='background:#FF7F0E;'></span>Incorrect	&nbsp
+		</div>
+		<div class='legend-scale'>
+			<span style='background:#2CA02C	;'></span>Correct &nbsp
+		</div>	
+	</div>
 	</div>
 	<div style="width:50%;text-align:center;float:left;">	 
 	<text style="font-size:20px;"><b>Leaderboard</b></text>
