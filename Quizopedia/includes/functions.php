@@ -94,7 +94,7 @@ class MyFunction {
 		$Interface_count=substr_count(strtolower($str_c),strtolower($Interface));
 		$Inheritance_count=substr_count(strtolower($str_c),strtolower($Inheritance));
 		$Interface_Inheritance = $Interface_count + $Inheritance_count;
-		
+		$total = $Basic_Concepts + $Data_Types + $Operations + $Arrays_concept + $Control_Structures + $Interface_Inheritance;
 		
 		
 		$Class_count_c=substr_count(strtolower($str_c_c),strtolower($Class));
@@ -128,10 +128,13 @@ class MyFunction {
 		$Interface_count_c=substr_count(strtolower($str_c_c),strtolower($Interface));
 		$Inheritance_count_c=substr_count(strtolower($str_c),strtolower($Inheritance));
 		$Interface_Inheritance_c = $Interface_count_c + $Inheritance_count_c;
-		
+		$total_c = $Basic_Concepts_c + $Data_Types_c + $Operations_c + $Arrays_concept_c + $Control_Structures_c + $Interface_Inheritance_c;
 		
 		$json_d = '{';
 		$json_d = $json_d.'  "name": "Java Concepts",';
+		$json_d = $json_d.'  "size": '.$total.',';
+		$json_d = $json_d.'  "correct": '.$total_c.',';
+		$json_d = $json_d.'  "incorrect": '.($total - $total_c).',';
 		$json_d = $json_d.'  "children": [';
 		$json_d = $json_d.'    {';
 		$json_d = $json_d.'      "name": "Basic Concepts",';
