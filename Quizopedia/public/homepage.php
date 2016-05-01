@@ -269,7 +269,7 @@
 		</script>	  
 	   <?php
 		 include_once("../includes/functions.php");
-		 $_GLOBAL['sunBurstJson']=$functions->json_convert("select lower(tags) as tags from questions where type = 'Q'");
+		 $_GLOBAL['sunBurstJson']=$functions->json_convert($_SESSION['user_id']);
 		 
 		 ?>
 		 

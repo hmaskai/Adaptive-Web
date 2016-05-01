@@ -1,5 +1,3 @@
-
-
 function loadSunBurst(data){
 	
 	var myjson = data;
@@ -22,7 +20,10 @@ function filter_min_arc_size_text(d, i) {return (d.dx*d.depth*radius/3)>7};
 	
 function format_description(d) {
   var description = d.description;
-      return  '<b>' + d.name;
+  var totalQ = d.size;
+  var correctQ = d.correct;
+  var incorrectQ = d.incorrect;
+  return  '<b>' + d.name + '<br>' + 'size:' + totalQ+ '<br>' + 'correct:' + correctQ + '<br>' + 'incorrect:' + incorrectQ;
 }
 
 function mouseOverArc(d) {
@@ -145,8 +146,3 @@ function computeTextRotation(d) {
 }
 
 }
-
-
-
-
-

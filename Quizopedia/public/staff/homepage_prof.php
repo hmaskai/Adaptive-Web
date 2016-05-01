@@ -126,7 +126,7 @@ function createTag(text) {
 	
     <div style="float:left; width:20%; "><ul type="none">
 		<li>
-		  <input type="checkbox" name="BasicConcept[]" id="option" value="Basic Concepts"><label for="option"> Basic Concepts</label>
+		  <input type="checkbox"  id="option" value="Basic Concepts"><label for="option"> Basic Concepts</label>
 		  <ul type="none">
 			<li><label><input type="checkbox" name="BasicConcept[]" class="subOption" value="Class"> Class</label></li>
 			<li><label><input type="checkbox" name="BasicConcept[]" class="subOption" value="Object"> Object</label></li>
@@ -136,9 +136,9 @@ function createTag(text) {
 	</ul></div>
     <div style="float:left; width:24%; "><ul type="none">
 		<li>
-		  <input type="checkbox" name="DataTypes[]" id="option1" value="Data Types"><label for="option1"> Data Types</label>
+		  <input type="checkbox"  id="option1" value="Data Types"><label for="option1"> Data Types</label>
 		  <ul type="none">
-			<li><label><input type="checkbox" name="DataTypes[]" class="Data_Types" value="Wrapper Classes"> Wrapper Classes</label></li>
+			<li><label><input type="checkbox" name="DataTypes[]" class="Data_Types" value="Wrapper"> Wrapper Classes</label></li>
 			<li><label><input type="checkbox" name="DataTypes[]" class="Data_Types" value="String"> String</label></li>
 			<li><label><input type="checkbox" name="DataTypes[]" class="Data_Types" value="Constants"> Constants</label></li>
 			<li><label><input type="checkbox" name="DataTypes[]" class="Data_Types" value="Primitive Data Type"> Primitive Data Type</label></li>
@@ -147,7 +147,7 @@ function createTag(text) {
 	</ul></div>		
     <div style="float:left; width:27%; "><ul type="none">
 		<li>
-		  <input type="checkbox" name="Operation[]" id="option2" value="Operations"><label for="option2"> Operations</label>
+		  <input type="checkbox" id="option2" value="Operations"><label for="option2"> Operations</label>
 		  <ul type="none">
 			<li><label><input type="checkbox" name="Operation[]" class="Operations" value="Boolean Expressions"> Boolean Expressions</label></li>
 			<li><label><input type="checkbox" name="Operation[]" class="Operations" value="Arithmetic Expressions"> Arithmetic Expressions</label></li>
@@ -156,16 +156,17 @@ function createTag(text) {
 	</ul></div>
 	<div style="float:left; width:27%; "><ul type="none">
 		<li>
-		  <input type="checkbox" id="option3" name="Array[]" value="Arrays"><label for="option3"> Arrays</label>
+		  <input type="checkbox" id="option3" ><label for="option3"> Array</label>
 		  <ul type="none">
 			<li><label><input type="checkbox" name="Array[]" class="Arrays" value="Two Dimensional Array"> Two Dimensional Array</label></li>
 			<li><label><input type="checkbox" name="Array[]" class="Arrays" value="ArrayList"> ArrayList</label></li>
+			<li><label><input type="checkbox" name="Array[]" class="Arrays" value="Arrays"> Arrays</label></li>
 		  </ul>
 		</li>
 	</ul></div>
 	<div style="float:left; width:20%; clear:left; "><ul type="none">
 		<li>
-		  <input type="checkbox" id="option4" name="ControlStructure[]" value="Control Structures"><label for="option4"> Control Structures</label>
+		  <input type="checkbox" id="option4" value="Control Structures"><label for="option4"> Control Structures</label>
 		  <ul type="none">
 			<li><label><input type="checkbox" name="ControlStructure[]" class="Control_Structures" value="Exceptions"> Exceptions</label></li>
 			<li><label><input type="checkbox" name="ControlStructure[]" class="Control_Structures" value="Nested Loops"> Nested Loops</label></li>
@@ -178,7 +179,7 @@ function createTag(text) {
 	</ul></div>
 		<div style="float:left; width:27%; "><ul type="none">
 		<li>
-		  <input type="checkbox" id="option5" name="InterfaceInheritance[]" value="Interface & Inheritances"><label for="option5"> Interface & Inheritance</label>
+		  <input type="checkbox" id="option5" value="Interface & Inheritances"><label for="option5"> Interface & Inheritance</label>
 		  <ul type="none">
 			<li><label><input type="checkbox" name="InterfaceInheritance[]" class="Interface_Inheritance" value="Interface"> Interface</label></li>
 			<li><label><input type="checkbox" name="InterfaceInheritance[]" class="Interface_Inheritance" value="Inheritance"> Inheritance</label></li>

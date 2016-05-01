@@ -45,7 +45,7 @@ class MyFunction {
 		$Class = "Class";
 		$Object = "Object";
 		$Variables = "Variables";
-		$Wrapper_Classes = "Wrapper Classes";
+		$Wrapper_Classes = "Wrapper";
 		$String = "String";
 		$Constants = "Constants";
 		$Primitive_Data_Type = "Primitive Data Type";
@@ -170,7 +170,7 @@ class MyFunction {
 		$json_d = $json_d.'      "children": [';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "size": '.$Wrapper_Classes_count.',';
-		$json_d = $json_d.'          "name": "Wrapper Classes",';
+		$json_d = $json_d.'          "name": "Wrapper",';
 		$json_d = $json_d.'  		 "correct": '.$Wrapper_Classes_count_c.',';
 		$json_d = $json_d.'  		 "incorrect": '.($Wrapper_Classes_count - $Wrapper_Classes_count_c).'';
 		$json_d = $json_d.'        },';
@@ -375,7 +375,7 @@ class MyFunction {
 		$Class = "Class";
 		$Object = "Object";
 		$Variables = "Variables";
-		$Wrapper_Classes = "Wrapper Classes";
+		$Wrapper_Classes = "Wrapper";
 		$String = "String";
 		$Constants = "Constants";
 		$Primitive_Data_Type = "Primitive Data Type";
@@ -480,7 +480,7 @@ class MyFunction {
 		}
 		$final .= ']';
 		
-		$final = str_replace("Wrapper Classes", "Wrapper_Classes", $final);
+		//$final = str_replace("Wrapper Classes", "Wrapper_Classes", $final);
 		$final = str_replace("Primitive Data Type", "Primitive_Data_Type", $final);
 		$final = str_replace("Boolean Expressions", "Boolean_Expressions", $final);
 		$final = str_replace("Arithmetic Expressions", "Arithmetic_Expressions", $final);
@@ -512,7 +512,7 @@ class MyFunction {
 		$Class = "Class";
 		$Object = "Object";
 		$Variables = "Variables";
-		$Wrapper_Classes = "Wrapper Classes";
+		$Wrapper_Classes = "Wrapper";
 		$String = "String";
 		$Constants = "Constants";
 		$Primitive_Data_Type = "Primitive Data Type";
