@@ -1,0 +1,161 @@
+body{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.container h3{
+color: #337ab7;
+font-weight:800;
+font-size: 40px;
+}
+
+.question {
+    text-align:center;
+	margin-top:5%;
+	font-size:48px;
+	
+}
+
+div.radionew {
+	clear: both;
+	margin: 0 20px;
+	float:left;
+	
+}
+div.submit {
+	clear: both;
+	margin: 0 20px;
+	margin-top: 10px;
+	float:left;
+	
+}
+
+label {
+  
+  border-radius: 3px;
+  border: 0px solid #D1D3D4;
+  font-size:125%;
+  
+}
+
+/* hide input */
+input.radio:empty {
+	margin-left: -999px;
+}
+
+/* style label */
+input.radio:empty ~ label {
+	position: relative;
+	float: left;
+	line-height: 2.5em;
+	text-indent: 3.25em;
+	margin-top: 0em;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+input.radio:empty ~ label:before {
+	position: absolute;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 2.5em;
+	background: #D1D3D4;
+	border-radius: 3px 0 0 3px;
+}
+
+/* toggle hover */
+input.radio:hover:not(:checked) ~ label:before {
+	content:'\2714';
+	text-indent: .9em;
+	color: #ffffff;
+}
+
+input.radio:hover:not(:checked) ~ label {
+	color: #888;
+}
+
+/* toggle on */
+input.radio:checked ~ label:before {
+	content:'\2714';
+	text-indent: .9em;
+	color: #9CE2AE;
+	background-color: #4DCB6D;
+}
+
+input.radio:checked ~ label {
+	color: #777;
+}
+
+/* radio focus */
+input.radio:focus ~ label:before {
+	box-shadow: 0 0 0 3px #999;
+}
+
+
+.btn-success {
+    clear: left;
+    
+}
+
+
+
+/*for showing the question once it has been answered*/
+
+.answered_question{
+	text-align:center;
+	margin-top:5%;
+	font-size:28px;
+}
+
+
+/*groupedBarChart*/
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.x.axis path {
+  display: none;
+}
+
+
+/*Dashboard*/
+
+path {  stroke: #fff; }
+path:hover {  opacity:0.9; }
+rect:hover {  fill:blue; }
+.axis {  font: 10px sans-serif; }
+.legend tr{    border-bottom:1px solid grey; }
+.legend tr:first-child{    border-top:1px solid grey; }
+
+
+
+
+.legend{
+    margin-bottom:76px;
+    display:inline-block;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+.legend td{
+    padding:4px 5px;
+    vertical-align:bottom;
+}
+.legendFreq, .legendPerc{
+    align:right;
+    width:50px;
+}
+
+
