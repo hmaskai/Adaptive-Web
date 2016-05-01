@@ -64,6 +64,23 @@ if(!empty($_POST['InterfaceInheritance'])) {
 		$i++;
 		}
 	
+	
+	/*for sending emails to the students
+	
+	
+	
+	$q1 = "Select username from login";
+	$students=$database->query($q1);
+	$headers = "From: harshilmaskai91@gmail.com" . "\r\n" .
+	//$students =$database->fetch_array($database->query($q2));
+	//echo $students;
+	$msg = "This is quizopedia test mail please do not panic";
+	$msg = wordwrap($msg,70);
+	while($row = mysql_fetch_array($students)){
+			mail("'".$row['username']."'","A new quiz for you",$msg,$headers);
+	
+	}
+	*/
 ?>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">

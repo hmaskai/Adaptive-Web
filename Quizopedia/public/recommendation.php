@@ -70,14 +70,14 @@
 					//echo $num_rows;
 				
 					
-					if($num_rows != 0){
+					//if($num_rows != 0){
 					
 					
 					echo "<h2 class='answered_question'>Quiz #".$question["question_id"]."<br/>".$question["question_text"]."</h2>";
 					?>
 					
 					
-						<div style="margin-left:33%">
+						<div style="margin-left:45%">
 							
 							<div class="radionew">
 							<label for="radio1" ><?php echo $question["option_1"];?></label>
@@ -97,7 +97,8 @@
 							
 						</div>
 						
-					<?php }?>
+					<!--?php }?-->
+					<div style="clear:left;margin-top:15%;text-align:center;">
 	<h3 style="clear:left;">Recommendations for this question:</h3>
 	
 	
@@ -119,8 +120,10 @@
 	 $i++;
  }
  
+ 
  ?>
 	
 	<h3>What your peers have to say:</h3>
+	</div>
 	</div>
 </body>
