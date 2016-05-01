@@ -5,35 +5,43 @@ class MyFunction {
 	
 	
 	
-	public function json_convert($q) {
-
+	public function json_convert($uid) {
 		//----- QUERY FOR TAGS OF ALL QUESTIONS [TO FIND THE COUNT OF ALL QUESTIONS]--------
-		//$q = "select lower(tags) as tags from questions where type = 'Q'";
+		$q = "select lower(tags) as tags from questions where type = 'Q'";
 		
 		//----- QUERY FOR TAGS OF ALL CORRECT ANSWERS OF LOGGED IN STUDENT------------------
-		//$q = "select lower(q.tags) from questions q, student_questions sq where sq.user_id = $session->user_id and q.question_id = sq.question_id and sq.answer = q.correct_answer and q.type = 'Q'"
+		$q_c = "select lower(q.tags) as tags from questions q, student_questions sq where sq.user_id = ".$uid." and q.question_id = sq.question_id and sq.answer = q.correct_answer and q.type = 'Q'";
 		
 		//----- QUERY FOR TAGS OF ALL IN-CORRECT ANSWERS OF LOGGED IN STUDENT---------------
-		//$q = "select lower(q.tags) from questions q, student_questions sq where sq.user_id = $session->user_id and q.question_id = sq.question_id and sq.answer != q.correct_answer and q.type = 'Q'"
+		//$q = "select lower(q.tags) as tags from questions q, student_questions sq where sq.user_id = $session->user_id and q.question_id = sq.question_id and sq.answer != q.correct_answer and q.type = 'Q'"
 		
 		//$result = $database->query($q);
+		//-----------------------------------------------------------
 		$result = mysql_query($q);
 		//$r = mysql_fetch_array($result);
-
-		$str = "";
-
+		$str_c = "";
 		while($row = mysql_fetch_array($result)){
-			$str = $str.",".$row["tags"];
+			$str_c = $str_c.",".$row["tags"];
 		}
-		$str = str_replace(", ", ",", $str);
-		$str = substr($str, 1, -1);
-
-		$str = str_replace(",", ", ", $str);
-		//echo $str;
+		$str_c = str_replace(", ", ",", $str_c);
+		$str_c = substr($str_c, 1, -1);
+		$str_c = str_replace(",", ", ", $str_c);
+		//-----------------------------------------------------------
+		$result_c = mysql_query($q_c);
+		//$r_c = mysql_fetch_array($result_c);
+		$str_c_c = "";
+		while($row_c = mysql_fetch_array($result_c)){
+			$str_c_c = $str_c_c.",".$row_c["tags"];
+		}
+		$str_c_c = str_replace(", ", ",", $str_c_c);
+		$str_c_c = substr($str_c_c, 1, -1);
+		$str_c_c = str_replace(",", ", ", $str_c_c);
+		//-----------------------------------------------------------
+		
+		
+		//echo $str_c;
 		// formatting string complete
-
 		// code to find the occurance of each concept in the string
-
 		$Class = "Class";
 		$Object = "Object";
 		$Variables = "Variables";
@@ -54,146 +62,248 @@ class MyFunction {
 		$Decision_Types = "Decision Types";
 		$Interface = "Interface";
 		$Inheritance = "Inheritance";
-
-
-		$Class_count=substr_count(strtolower($str),strtolower($Class));
-		$Object_count=substr_count(strtolower($str),strtolower($Object));
-		$Variables_count=substr_count(strtolower($str),strtolower($Variables));
-		$Wrapper_Classes_count=substr_count(strtolower($str),strtolower($Wrapper_Classes));
-		$String_count=substr_count(strtolower($str),strtolower($String));
-		$Constants_count=substr_count(strtolower($str),strtolower($Constants));
-		$Primitive_Data_Type_count=substr_count(strtolower($str),strtolower($Primitive_Data_Type));
-		$Boolean_Expressions_count=substr_count(strtolower($str),strtolower($Boolean_Expressions));
-		$Arithmetic_Expressions_count=substr_count(strtolower($str),strtolower($Arithmetic_Expressions));
-		$Two_Dimensional_Array_count=substr_count(strtolower($str),strtolower($Two_Dimensional_Array));
-		$ArrayList_count=substr_count(strtolower($str),strtolower($ArrayList));
-		$Arrays_count=substr_count(strtolower($str),strtolower($Arrays));
-		$Exceptions_count=substr_count(strtolower($str),strtolower($Exceptions));
-		$Nested_Loops_count=substr_count(strtolower($str),strtolower($Nested_Loops));
-		$For_Loop_count=substr_count(strtolower($str),strtolower($For_Loop));
-		$Do_While_Loop_count=substr_count(strtolower($str),strtolower($Do_While_Loop));
-		$Switch_Statement_count=substr_count(strtolower($str),strtolower($Switch_Statement));
-		$Decision_Types_count=substr_count(strtolower($str),strtolower($Decision_Types));
-		$Interface_count=substr_count(strtolower($str),strtolower($Interface));
-		$Inheritance_count=substr_count(strtolower($str),strtolower($Inheritance));
-
-
+		
+		$Class_count=substr_count(strtolower($str_c),strtolower($Class));
+		$Object_count=substr_count(strtolower($str_c),strtolower($Object));
+		$Variables_count=substr_count(strtolower($str_c),strtolower($Variables));
+		$Basic_Concepts = $Class_count + $Object_count + $Variables_count;
+		
+		$Wrapper_Classes_count=substr_count(strtolower($str_c),strtolower($Wrapper_Classes));
+		$String_count=substr_count(strtolower($str_c),strtolower($String));
+		$Constants_count=substr_count(strtolower($str_c),strtolower($Constants));
+		$Primitive_Data_Type_count=substr_count(strtolower($str_c),strtolower($Primitive_Data_Type));
+		$Data_Types = $Wrapper_Classes_count + $String_count + $Constants_count + $Primitive_Data_Type_count;
+		
+		$Boolean_Expressions_count=substr_count(strtolower($str_c),strtolower($Boolean_Expressions));
+		$Arithmetic_Expressions_count=substr_count(strtolower($str_c),strtolower($Arithmetic_Expressions));
+		$Operations = $Boolean_Expressions_count + $Arithmetic_Expressions_count;
+		
+		$Two_Dimensional_Array_count=substr_count(strtolower($str_c),strtolower($Two_Dimensional_Array));
+		$ArrayList_count=substr_count(strtolower($str_c),strtolower($ArrayList));
+		$Arrays_count=substr_count(strtolower($str_c),strtolower($Arrays));
+		$Arrays_concept = $Two_Dimensional_Array_count + $ArrayList_count +$Arrays_count;
+		
+		$Exceptions_count=substr_count(strtolower($str_c),strtolower($Exceptions));
+		$Nested_Loops_count=substr_count(strtolower($str_c),strtolower($Nested_Loops));
+		$For_Loop_count=substr_count(strtolower($str_c),strtolower($For_Loop));
+		$Do_While_Loop_count=substr_count(strtolower($str_c),strtolower($Do_While_Loop));
+		$Switch_Statement_count=substr_count(strtolower($str_c),strtolower($Switch_Statement));
+		$Decision_Types_count=substr_count(strtolower($str_c),strtolower($Decision_Types));
+		$Control_Structures = $Exceptions_count + $Nested_Loops_count + $For_Loop_count + $Do_While_Loop_count + $Switch_Statement_count + $Decision_Types_count;
+		
+		$Interface_count=substr_count(strtolower($str_c),strtolower($Interface));
+		$Inheritance_count=substr_count(strtolower($str_c),strtolower($Inheritance));
+		$Interface_Inheritance = $Interface_count + $Inheritance_count;
+		
+		
+		
+		$Class_count_c=substr_count(strtolower($str_c_c),strtolower($Class));
+		$Object_count_c=substr_count(strtolower($str_c_c),strtolower($Object));
+		$Variables_count_c=substr_count(strtolower($str_c_c),strtolower($Variables));
+		$Basic_Concepts_c = $Class_count_c + $Object_count_c + $Variables_count_c;
+		
+		$Wrapper_Classes_count_c=substr_count(strtolower($str_c_c),strtolower($Wrapper_Classes));
+		$String_count_c=substr_count(strtolower($str_c_c),strtolower($String));
+		$Constants_count_c=substr_count(strtolower($str_c_c),strtolower($Constants));
+		$Primitive_Data_Type_count_c=substr_count(strtolower($str_c_c),strtolower($Primitive_Data_Type));
+		$Data_Types_c = $Wrapper_Classes_count_c + $String_count_c + $Constants_count_c + $Primitive_Data_Type_count_c;
+		
+		$Boolean_Expressions_count_c=substr_count(strtolower($str_c_c),strtolower($Boolean_Expressions));
+		$Arithmetic_Expressions_count_c=substr_count(strtolower($str_c_c),strtolower($Arithmetic_Expressions));
+		$Operations_c = $Boolean_Expressions_count_c + $Arithmetic_Expressions_count_c;
+		
+		$Exceptions_count_c=substr_count(strtolower($str_c_c),strtolower($Exceptions));
+		$Nested_Loops_count_c=substr_count(strtolower($str_c_c),strtolower($Nested_Loops));
+		$For_Loop_count_c=substr_count(strtolower($str_c_c),strtolower($For_Loop));
+		$Do_While_Loop_count_c=substr_count(strtolower($str_c_c),strtolower($Do_While_Loop));
+		$Switch_Statement_count_c=substr_count(strtolower($str_c_c),strtolower($Switch_Statement));
+		$Decision_Types_count_c=substr_count(strtolower($str_c_c),strtolower($Decision_Types));
+		$Control_Structures_c = $Exceptions_count_c + $Nested_Loops_count_c + $For_Loop_count_c + $Do_While_Loop_count_c + $Switch_Statement_count_c + $Decision_Types_count_c;
+		
+		$Two_Dimensional_Array_count_c=substr_count(strtolower($str_c_c),strtolower($Two_Dimensional_Array));
+		$ArrayList_count_c=substr_count(strtolower($str_c_c),strtolower($ArrayList));
+		$Arrays_count_c=substr_count(strtolower($str_c_c),strtolower($Arrays));
+		$Arrays_concept_c = $Two_Dimensional_Array_count_c + $ArrayList_count_c +$Arrays_count_c;
+		
+		$Interface_count_c=substr_count(strtolower($str_c_c),strtolower($Interface));
+		$Inheritance_count_c=substr_count(strtolower($str_c),strtolower($Inheritance));
+		$Interface_Inheritance_c = $Interface_count_c + $Inheritance_count_c;
+		
+		
 		$json_d = '{';
 		$json_d = $json_d.'  "name": "Java Concepts",';
 		$json_d = $json_d.'  "children": [';
 		$json_d = $json_d.'    {';
 		$json_d = $json_d.'      "name": "Basic Concepts",';
-		$json_d = $json_d.'     "children": [';
+		$json_d = $json_d.'  	 "size": '.$Basic_Concepts.',';
+		$json_d = $json_d.'  	 "correct": '.$Basic_Concepts_c.',';
+		$json_d = $json_d.'  	 "incorrect": '.($Basic_Concepts - $Basic_Concepts_c).',';
+		$json_d = $json_d.'      "children": [';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "size": '.$Class_count.',';
-		$json_d = $json_d.'          "name": "Class"';
+		$json_d = $json_d.'          "name": "Class",';
+		$json_d = $json_d.'  		 "correct": '.$Class_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Class_count - $Class_count_c).'';
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'       {';
 		$json_d = $json_d.'          "size": '.$Object_count.',';
-		$json_d = $json_d.'          "name": "Object"';
+		$json_d = $json_d.'          "name": "Object",';
+		$json_d = $json_d.'  		 "correct": '.$Object_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Object_count - $Object_count_c).'';		
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "size": '.$Variables_count.',';
-		$json_d = $json_d.'          "name": "Variable"';
+		$json_d = $json_d.'          "name": "Variable",';
+		$json_d = $json_d.'  		 "correct": '.$Variables_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Variables_count - $Variables_count_c).'';
 		$json_d = $json_d.'        }';
 		$json_d = $json_d.'      ]';
 		$json_d = $json_d.'    },';
 		$json_d = $json_d.'   {';
 		$json_d = $json_d.'      "name": "Data Types",';
+		$json_d = $json_d.'      "size": '.$Data_Types.',';
+		$json_d = $json_d.'  	 "correct": '.$Data_Types_c.',';
+		$json_d = $json_d.'  	 "incorrect": '.($Data_Types - $Data_Types_c).',';
 		$json_d = $json_d.'      "children": [';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "size": '.$Wrapper_Classes_count.',';
-		$json_d = $json_d.'          "name": "Wrapper Classes"';
+		$json_d = $json_d.'          "name": "Wrapper Classes",';
+		$json_d = $json_d.'  		 "correct": '.$Wrapper_Classes_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Wrapper_Classes_count - $Wrapper_Classes_count_c).'';
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "size": '.$String_count.',';
-		$json_d = $json_d.'          "name": "String"';
+		$json_d = $json_d.'          "name": "String",';
+		$json_d = $json_d.'  		 "correct": '.$String_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($String_count - $String_count_c).'';
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "size": '.$Constants_count.',';
-		$json_d = $json_d.'          "name": "Constants"';
+		$json_d = $json_d.'          "name": "Constants",';
+		$json_d = $json_d.'  		 "correct": '.$Constants_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Constants_count - $Constants_count_c).'';
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
-		$json_d = $json_d.'         "size": '.$Primitive_Data_Type_count.',';
-		$json_d = $json_d.'          "name": "Primitive Data Type"';
+		$json_d = $json_d.'          "size": '.$Primitive_Data_Type_count.',';
+		$json_d = $json_d.'          "name": "Primitive Data Type",';
+		$json_d = $json_d.'  		 "correct": '.$Primitive_Data_Type_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Primitive_Data_Type_count - $Primitive_Data_Type_count_c).'';
 		$json_d = $json_d.'       }';
 		$json_d = $json_d.'      ]';
 		$json_d = $json_d.'    },';
 		$json_d = $json_d.'    {';
 		$json_d = $json_d.'      "name": "Operations",';
+		$json_d = $json_d.'  	 "size": '.$Operations.',';
+		$json_d = $json_d.'  	 "correct": '.$Operations_c.',';
+		$json_d = $json_d.'  	 "incorrect": '.($Operations - $Operations_c).',';
 		$json_d = $json_d.'      "children": [';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "name": "Boolean Expressions",';
+		$json_d = $json_d.'  		 "correct": '.$Boolean_Expressions_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Boolean_Expressions_count - $Boolean_Expressions_count_c).',';
 		$json_d = $json_d.'          "size": '.$Boolean_Expressions_count;
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'       {';
 		$json_d = $json_d.'          "name": "Arithmetic Expressions",';
+		$json_d = $json_d.'  		 "correct": '.$Arithmetic_Expressions_count.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Arithmetic_Expressions_count - $Arithmetic_Expressions_count_c).',';
 		$json_d = $json_d.'          "size": '.$Arithmetic_Expressions_count;
 		$json_d = $json_d.'        }';
 		$json_d = $json_d.'      ]';
 		$json_d = $json_d.'    },';
 		$json_d = $json_d.'    {';
-		$json_d = $json_d.'      "name": "Control Structuures",';
+		$json_d = $json_d.'      "name": "Control Structures",';
+		$json_d = $json_d.'  	 "size": '.$Control_Structures.',';
+		$json_d = $json_d.'  	 "correct": '.$Control_Structures_c.',';
+		$json_d = $json_d.'  	 "incorrect": '.($Control_Structures - $Control_Structures_c).',';
 		$json_d = $json_d.'      "children": [';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "name": "Exceptions",';
+		$json_d = $json_d.'  		 "correct": '.$Exceptions_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Exceptions_count - $Exceptions_count_c).',';
 		$json_d = $json_d.'          "size": '.$Exceptions_count;
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "name": "Nested Loops",';
+		$json_d = $json_d.'  		 "correct": '.$Nested_Loops_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Nested_Loops_count - $Nested_Loops_count_c).',';
 		$json_d = $json_d.'          "size": '.$Nested_Loops_count;
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "name": "For Loop",';
+		$json_d = $json_d.'  		 "correct": '.$For_Loop_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($For_Loop_count - $For_Loop_count_c).',';
 		$json_d = $json_d.'          "size": '.$For_Loop_count;
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "name": "Do-While Loop",';
+		$json_d = $json_d.'  		 "correct": '.$Do_While_Loop_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Do_While_Loop_count - $Do_While_Loop_count_c).',';
 		$json_d = $json_d.'          "size": '.$Do_While_Loop_count;
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "name": "Switch Statement",';
+		$json_d = $json_d.'  		 "correct": '.$Switch_Statement_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Switch_Statement_count - $Switch_Statement_count_c).',';
 		$json_d = $json_d.'          "size": '.$Switch_Statement_count;
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "name": "Decision Types",';
-		$json_d = $json_d.'         "size": '.$Decision_Types_count;
+		$json_d = $json_d.'  		 "correct": '.$Decision_Types_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Decision_Types_count - $Decision_Types_count_c).',';
+		$json_d = $json_d.'          "size": '.$Decision_Types_count;
 		$json_d = $json_d.'        }';
 		$json_d = $json_d.'      ]';
 		$json_d = $json_d.'    },';
 		$json_d = $json_d.'    {';
 		$json_d = $json_d.'      "name": "Arrays",';
-		$json_d = $json_d.'     "children": [';
+		$json_d = $json_d.'  	 "size": '.$Arrays_concept.',';
+		$json_d = $json_d.'  	 "correct": '.$Arrays_concept_c.',';
+		$json_d = $json_d.'  	 "incorrect": '.($Arrays_concept - $Arrays_concept_c).',';
+		$json_d = $json_d.'      "children": [';
 		$json_d = $json_d.'       {';
 		$json_d = $json_d.'          "name": "Two Dimensional Array",';
+		$json_d = $json_d.'  		 "correct": '.$Two_Dimensional_Array_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Two_Dimensional_Array_count - $Two_Dimensional_Array_count_c).',';
 		$json_d = $json_d.'          "size": '.$Two_Dimensional_Array_count;
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "name": "ArrayList",';
+		$json_d = $json_d.'  		 "correct": '.$ArrayList_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($ArrayList_count - $ArrayList_count_c).',';
 		$json_d = $json_d.'          "size": '.$ArrayList_count;
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "size": '.$Arrays_count.',';
-		$json_d = $json_d.'          "name": "Arrays"';
+		$json_d = $json_d.'          "name": "Arrays",';
+		$json_d = $json_d.'  		 "correct": '.$Arrays_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Arrays_count - $Arrays_count_c).'';
 		$json_d = $json_d.'        }';
 		$json_d = $json_d.'      ]';
 		$json_d = $json_d.'    },';
 		$json_d = $json_d.'    {';
 		$json_d = $json_d.'      "name": "Interface & Inheritance",';
+		$json_d = $json_d.'  	 "size": '.$Interface_Inheritance.',';
+		$json_d = $json_d.'  	 "correct": '.$Interface_Inheritance_c.',';
+		$json_d = $json_d.'  	 "incorrect": '.($Interface_Inheritance - $Interface_Inheritance_c).',';
 		$json_d = $json_d.'      "children": [';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "name": "Interface",';
+		$json_d = $json_d.'  		 "correct": '.$Interface_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Interface_count - $Interface_count_c).',';
 		$json_d = $json_d.'          "size": '.$Interface_count;
 		$json_d = $json_d.'        },';
 		$json_d = $json_d.'        {';
 		$json_d = $json_d.'          "name": "Inheritance",';
+		$json_d = $json_d.'  		 "correct": '.$Inheritance_count_c.',';
+		$json_d = $json_d.'  		 "incorrect": '.($Inheritance_count - $Inheritance_count_c).',';
 		$json_d = $json_d.'          "size": '.$Inheritance_count;
 		$json_d = $json_d.'        }';
 		$json_d = $json_d.'      ]';
 		$json_d = $json_d.'    }';
 		$json_d = $json_d.'  ]';
 		$json_d = $json_d.'}';
-
+		
 		return $json_d;
 	}
 
