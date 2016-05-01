@@ -1,0 +1,43 @@
+https://en.wikibooks.org/wiki/Java_Programming/History
+History of the Java™ programming language
+
+On 23 May 1995, John Gage, the director of the Science Office of the Sun Microsystems along with Marc Andreesen, co-founder and executive vice president at Netscape announced to an audience of SunWorldTM that Java technology wasn't a myth and that it was going to be incorporated into Netscape Navigator.[1]
+At the time the total number of people working on Java was less than 30.[1] This team would shape the future in the next decade and no one had any idea as to what was in store. From running an unmanned vehicle on Mars to serving as the operating environment of most consumer electronics, e.g. cable set-top boxes, VCRs, toasters and PDAs,[2] Java has come a long way from its inception. Let's see how it all began.
+Earlier programming languages
+Before Java emerged as a programming language, C++ was the dominant player in the trade. The primary goal of the creators of Java was to create a language that could tackle most of the things that C++ offered while getting rid of some of the more tedious tasks that came with the earlier languages.
+Computer hardware went through a performance and price revolution from 1972 to 1991. Better, faster hardware was available at ever lower prices, and the demand for big and complex software exponentially increased. To accommodate the demand, new development technologies were invented.
+The C language developed in 1972 by Dennis Ritchie had taken a decade to become the most popular language amongst programmers working on PCs and similar platforms (other languages, like COBOL and FORTRAN, dominated the mainframe market). But, with time programmers found that programming in C became tedious with its structural syntax.[3] Although people attempted to solve this problem, it would be later that a new development philosophy was introduced, one named Object-Oriented Programming (OOP). With OOP, one can write code that can be reused later without needing to rewrite the code over and over again. In 1979, Bjarne Stroustrup developed C++, an enhancement to the C language with included OOP fundamentals and features. Sun generated revenue from Java through the selling of licenses for specialized products such as the Java Enterprise System.
+The Green team
+In December of 1990, a project was initiated behind closed doors with the aim to create a programming tool that could render obsolete the C and C++ programming languages. Engineer Patrick Naughton had become extremely frustrated with the state of Sun's C++ and C APIs (Application Programming Interfaces) and tools. While he was considering to move towards NeXT, he was offered a chance to work on new technology and the Stealth Project was started, a secret nobody but he knew.
+This Stealth Project was later named the Green Project when James Gosling and Mike Sheridan joined Patrick.[1] As the Green Project teethed, the prospects of the project started becoming clearer to the engineers working on it. No longer did it aim to create a new language far superior to the present ones, but it aimed to target devices other than the computer.
+Staffed at 13 people, they began work in a small office on Sand Hill Road in Menlo Park, California. This team came to be called the Green Team henceforth in time. The project they underwent was chartered by Sun Microsystems to anticipate and plan for the "next wave" in computing. For the team, this meant at least one significant trend, that of the convergence of digitally controlled consumer devices and computers.[1]
+Reshaping thought
+The team started thinking of replacing C++ with a better version, a faster version, a responsive version. But the one thing they hadn't thought of, as of yet, was that the language they were aiming for had to be developed for an embedded system with limited resources. An embedded system is a computer system scaled to a minimalistic interface demanding only a few functions from its design. For such a system, C++ or any successor would seem too large as all the languages at the time demanded a larger footprint than what was desired. The team thus had to think in a different way to go about solving all these problems.
+Co-founder of Sun Microsystems, Bill Joy, envisioned a language combining the power of Mesa and C in a paper he wrote for the engineers at Sun named Further. Gathering ideas, Gosling began work on enhancing C++ and named it "C++ ++ --", a pun on the evolutionary structure of the language's name. The ++ and -- meant, putting in and taking out stuff. He soon abandoned the name and called it Oak[1] after the tree that stood outside his office.
+The demise of an idea, birth of another
+By now, the work on Oak had been significant but come the year 1993, people saw the demise of set-top boxes, interactive TV and the PDAs. A failure that completely ushered the inventors' thoughts to be reinvented. Only a miracle could make the project a success now. And such a miracle awaited anticipation.
+National Center for Supercomputing Applications (NCSA) had just unveiled its new commercial web browser for the internet the previous year. The focus of the team, now diverted towards where they thought the "next-wave" of computing would be — the internet. The team then divulged into the realms of creating the same embeddable technology to be used in the web browser space calling it an applet — a small application. Keeping all of this in mind, the team created a list of features tackling the C++ problems. In their opinion, the project should ...
+The team now needed a proper identity and they decided on naming the new technology they created Java ushering a new generation of products for the internet boom. A by-product of the project was a cartoon named "Duke" created by Joe Parlang which became its identity then.
+Finally at the SunWorldTM conference, Andreesen unveiled the new technology to the masses. Riding along with the explosion of interest and publicity in the Internet, Java quickly received widespread recognition and expectations grew for it to become the dominant software for browser and consumer applications.[2]
+Initially Java was owned by Sun Microsystems, but later it was released to open source; the term Java was a trademark of Sun Microsystems. Sun released the source code for its HotSpot Virtual Machine and compiler in November 2006, and most of the source code of the class library in May 2007. Some parts were missing because they were owned by third parties, not by Sun Microsystems. The released parts were published under the terms of the GNU General Public License, a free software license.
+Versions
+Unlike C and C++, Java's growth is pretty recent. Here, we'd quickly go through the development paths that Java took with age.
+Initial Release (versions 1.0 and 1.1)
+Introduced in 1996 for the Solaris, Windows, Mac OS Classic and Linux, Java was initially released as the Java Development Kit 1.0 (JDK 1.0). This included the Java runtime (the virtual machine and the class libraries), and the development tools (e.g., the Java compiler). Later, Sun also provided a runtime-only package, called the Java Runtime Environment (JRE). The first name stuck, however, so usually people refer to a particular version of Java by its JDK version (e.g., JDK 1.0).
+Java 2 (version 1.2)
+Introduced in 1998 as a quick fix to the former versions, version 1.2 was the start of a new beginning for Java. The JDKs of version 1.2 and later versions are often called Java 2 as well. For example, the official name of JDK 1.4 is The Java(TM) 2 Platform, Standard Edition version 1.4.
+Kestrel (Java 1.3)
+Released in 8 May 2000. The most notable changes were:
+Merlin (Java 1.4)
+Released in 6 February 2002, Java 1.4 has improved programmer productivity by expanding language features and available APIs:
+Tiger (version 1.5.0; Java SE 5)
+Released in September 2004
+Mustang (version 1.6.0; Java SE 6)
+Released on 11 December 2006.[4]
+What's New in Java SE 6:
+Dolphin (version 1.7.0; Java SE 7)
+Released on 28 July 2011.
+Feature additions for Java 7 include:[5]
+Lambda (Java's implementation of lambda functions), Jigsaw (Java's implementation of modules), and part of Coin were dropped from Java 7. Java 8 will be released with the remaining features in summer 2013.[18]
+References
+

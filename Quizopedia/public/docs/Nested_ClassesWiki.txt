@@ -1,0 +1,27 @@
+https://en.wikibooks.org/wiki/Java_Programming/Nested_Classes
+Nested Classes
+
+In Java you can define a class inside an other class. A class can be nested inside another class or inside a method. A class that is not nested is called a top-level class and a class defining a nested class is an outer class.
+Inner classes
+Nesting a class inside a class
+When a class is declared inside another class, the nested class' access modifier can be public, private, protected or package(default).
+The inner class has access to the enclosing class instance's variables and methods, even private ones, as seen above. This makes it very different from the nested class in C++, which are equivalent to the "static" inner classes, see below.
+An inner object has a reference to the outer object. In other words, all inner objects are tied to the outer object. The inner object can only be created through a reference to the 'outer' object. See below.
+Note that inner objects, because they are tied to the outer object, cannot contain static variables or methods.
+When in a non-static method of the outer class, you can directly use new InnerClass(), since the class instance is implied to be this.
+You can directly access the reference to the outer object from within an inner class with the syntax OuterClass.this; although this is usually unnecessary because you already have access to its fields and methods.
+Inner classes compile to separate ".class" bytecode files, with the name of the enclosing class, followed by a "$", followed by the name of the inner class. So for example, the above inner class would be compiled to a file named "OuterClass$InnerClass.class".
+Static inner classes
+An inner class can be declared static. These classes are not bound to an instance of the outer defining class. A static inner class has no enclosing instance, and therefore cannot access instance variables and methods of the outer class. You do not specify an instance when creating a static inner class. This is equivalent to the inner classes in C++.
+Nesting a class inside a method
+These inner classes, also called local classes, cannot have access modifiers, like local variables, since the class is 'private' to the method. The inner class can be only abstract or final.
+In addition to instance variables of the enclosing class, local classes can also access local variables of the enclosing method, but only ones that are declared final. This is because the local class instance might outlive the invocation of the method, and so needs its own copy of the variable. To avoid problems with having two different copies of a mutable variable with the same name in the same scope, it is required to be final, so it cannot be changed.
+Anonymous Classes
+In Java, a class definition and its instantiation can be combined into a single step. By doing that the class does not require a name. Those classes are called anonymous classes. An anonymous class can be defined and instantiated in contexts where a reference can be used, and it is a nested class to an existing class. Anonymous class is a special case of a class local to a method; hence they also can access final local variables of the enclosing method.
+Anonymous classes are most useful to create an instance of an interface or adapter class without needing a brand new class.
+In the above example the class that implements the ActionListener is anonymous. The class is defined where it is instantiated.
+The above code is harder to read than if the class is explicitly defined, so why use it? If many implementations are needed for an interface, those classes are used only in one particular place, and it would be hard to come up with names for them, using an anonymous inner class makes sense.
+The following example uses an anonymous inner class to implement an action listener.
+The following example does the same thing, but it names the class that implements the action listener.
+Using anonymous classes is especially preferable when you intend to use many different classes that each implement the same interface.
+

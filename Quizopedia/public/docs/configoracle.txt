@@ -1,0 +1,7 @@
+https://docs.oracle.com/javase/tutorial/essential/environment/config.html
+Configuration Utilities
+This section describes some of the configuration utilities that help an application access its startup context.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

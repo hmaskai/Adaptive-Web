@@ -1,0 +1,18 @@
+https://docs.oracle.com/javase/tutorial/essential/io/copy.html
+Copying a File or Directory
+You can copy a file or directory by using the copy(Path, Path, CopyOption...) method. The copy fails if the target file exists, unless the REPLACE_EXISTING option is specified.
+Directories can be copied. However, files inside the directory are not copied, so the new directory is empty even when the original directory contains files.
+When copying a symbolic link, the target of the link is copied. If you want to copy the link itself, and not the contents of the link, specify either the NOFOLLOW_LINKS or REPLACE_EXISTING option.
+This method takes a varargs argument. The following StandardCopyOption and LinkOption enums are supported:
+If you are not familiar with enums, see Enum Types.
+The following shows how to use the copy method:
+CODE:
+import static java.nio.file.StandardCopyOption.*;
+...
+Files.copy(source, target, REPLACE_EXISTING);
+In addition to file copy, the Files class also defines methods that may be used to copy between a file and a stream. The copy(InputStream, Path, CopyOptions...) method may be used to copy all bytes from an input stream to a file. The copy(Path, OutputStream) method may be used to copy all bytes from a file to an output stream.
+The Copy example uses the copy and Files.walkFileTree methods to support a recursive copy. See Walking the File Tree for more information.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

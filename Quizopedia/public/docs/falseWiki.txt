@@ -1,0 +1,3 @@
+https://en.wikibooks.org/wiki/Java_Programming/Literals/Boolean_Literals/false
+Java Programming/Literals/Boolean Literals/false
+false is a boolean literal representing the false value. See also true.

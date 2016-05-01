@@ -1,0 +1,4 @@
+https://en.wikibooks.org/wiki/Java_Programming/Graphics/Understanding_gradients
+Understanding gradients
+
+To do: Add some exercises like the ones in Variables

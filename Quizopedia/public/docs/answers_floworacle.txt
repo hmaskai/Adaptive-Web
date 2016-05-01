@@ -1,0 +1,51 @@
+https://docs.oracle.com/javase/tutorial/java/nutsandbolts/QandE/answers_flow.html
+Answers to Questions and Exercises: Control Flow Statements
+Answer:
+CODE:
+for ( ; ; ) {
+
+}
+Answer:
+CODE:
+while (true) {
+
+}
+CODE:
+if (aNumber >= 0)
+    if (aNumber == 0)
+        System.out.println("first string");
+else 
+    System.out.println("second string");
+System.out.println("third string");
+Solution:
+CODE:
+second string
+third string
+Solution: NestedIf
+CODE:
+second string
+third string
+Solution:
+CODE:
+if (aNumber >= 0)
+    if (aNumber == 0)
+        System.out.println("first string");
+    else
+        System.out.println("second string");
+
+System.out.println("third string");
+Solution:
+CODE:
+if (aNumber >= 0) {
+    if (aNumber == 0) {
+        System.out.println("first string");
+    } else {
+        System.out.println("second string");
+    }
+}
+
+System.out.println("third string");
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

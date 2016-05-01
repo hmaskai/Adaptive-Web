@@ -1,0 +1,11 @@
+https://docs.oracle.com/javase/tutorial/essential/concurrency/join.html
+Joins
+The join method allows one thread to wait for the completion of another. If t is a Thread object whose thread is currently executing,
+CODE:
+t.join();
+causes the current thread to pause execution until t's thread terminates. Overloads of join allow the programmer to specify a waiting period. However, as with sleep, join is dependent on the OS for timing, so you should not assume that join will wait exactly as long as you specify.
+Like sleep, join responds to an interrupt by exiting with an InterruptedException.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

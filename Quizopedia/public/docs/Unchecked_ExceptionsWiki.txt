@@ -1,0 +1,10 @@
+https://en.wikibooks.org/wiki/Java_Programming/Unchecked_Exceptions
+Unchecked Exceptions
+
+Unchecked, uncaught or runtime exceptions are exceptions that can be thrown without being caught or declared:
+...however, you can still declare and catch such exceptions. Runtime exception are not business exceptions. They are usually related to hard-coded issues like data errors, like arithmetic overflow, divide by zero, in other words, errors that can't be worked around nor anticipated. The most famous (and feared) runtime exception is the NullPointerException.
+A runtime exception must be or inherit from the RuntimeException class or the Error class.
+Sometime it is desirable to catch all exception for logging purposes, then throw it back on. For example, in servlet programming when application server calls the server getLastModified(), we want to monitor that no exception even runtime exception happened during serving the request. The application has its own logging separate from the server logging. The runtime exceptions would just go through without detecting it by the application. The following code would check all exceptions, log them, and throw it back again.
+In the above code, all business logic exception are handled in the getTimeStamp() method. Runtime exceptions are caught for logging purposes, and then thrown back to the server to handle it.
+
+To do: Add some exercises like the ones in Variables

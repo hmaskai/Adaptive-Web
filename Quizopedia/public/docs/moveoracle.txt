@@ -1,0 +1,15 @@
+https://docs.oracle.com/javase/tutorial/essential/io/move.html
+Moving a File or Directory
+You can move a file or directory by using the move(Path, Path, CopyOption...) method. The move fails if the target file exists, unless the REPLACE_EXISTING option is specified.
+Empty directories can be moved. If the directory is not empty, the move is allowed when the directory can be moved without moving the contents of that directory. On UNIX systems, moving a directory within the same partition generally consists of renaming the directory. In that situation, this method works even when the directory contains files.
+This method takes a varargs argument – the following StandardCopyOption enums are supported:
+The following shows how to use the move method:
+CODE:
+import static java.nio.file.StandardCopyOption.*;
+...
+Files.move(source, target, REPLACE_EXISTING);
+Though you can implement the move method on a single directory as shown, the method is most often used with the file tree recursion mechanism. For more information, see Walking the File Tree.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

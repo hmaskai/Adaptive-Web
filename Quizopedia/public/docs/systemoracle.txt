@@ -1,0 +1,7 @@
+https://docs.oracle.com/javase/tutorial/essential/environment/system.html
+System Utilities
+The System class implements a number of system utilities. Some of these have already been covered in the previous section on Configuration Utilities. This section covers some of the other system utilities.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

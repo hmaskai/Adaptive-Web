@@ -1,0 +1,54 @@
+https://en.wikibooks.org/wiki/Java_Programming/Collection
+Collection
+
+The most basic collection interface is called Collection. This interface gives the user a generic usage of a collection. All collections need to have the same basic operations. Those are:
+When you put an object in a collection, this object is not actually in the collection. Only its object reference is added to the collection. This means that if an object is changed after it was put in an collection, the object in the collection also changes. The code listing 5.2 computes the seven next days from tomorrow and store each date in a list to read it after. See what happens:
+ The next day is: Thu May 5 4:25:50 UTC 2016  The next day is: Thu May 5 4:25:50 UTC 2016  The next day is: Thu May 5 4:25:50 UTC 2016  The next day is: Thu May 5 4:25:50 UTC 2016  The next day is: Thu May 5 4:25:50 UTC 2016  The next day is: Thu May 5 4:25:50 UTC 2016  The next day is: Thu May 5 4:25:50 UTC 2016
+Each collection items were said to be updated to a different date but they all have been updated to the last one. It means that each update has updated all the collection items. And this is the case. The currentDate has been used to fill all the collection items. The collection didn't keep trace of the added values (one of the seven dates) but the added object references (currentDate). So the collection contains the same object seven times! To avoid this issue, we should have coded it this way:
+ The next day is: Fri Apr 29 4:25:50 UTC 2016  The next day is: Sat Apr 30 4:25:50 UTC 2016  The next day is: Sun May 1 4:25:50 UTC 2016  The next day is: Mon May 2 4:25:50 UTC 2016  The next day is: Tue May 3 4:25:50 UTC 2016  The next day is: Wed May 4 4:25:50 UTC 2016  The next day is: Thu May 5 4:25:50 UTC 2016
+Now each time we add an item to the collection, it is a different instance. All the items evolve separately. To add an object in a collection and avoid this item to be changed each time the source object is changed, you have to copy or clone the object before you add it to the collection.
+Generics
+Objects put into a collection are upcasted to Object class. It means that you need to cast the object reference back when you get an element out from the collection. It also means that you need to know the type of the object when you take it out. If a collection contains different types of objects, we will have difficulty finding out the type of the objects obtained from a collection at run time. Let's use a collection with any objects in it:
+This error could have been fixed earlier, at compile time, using generic types.
+The Generics has been added since JDK version 1.5. It is an enhancement to the type system of the Java language. All collection implementations since 1.5 now have one parameterized type <E> added. The E refers to an Element type. When a collection is created, the actual Element type will replace the E. In the collection, the objects are now upcasted to E class.
+ageList is a collection that can contain only Integer objects as elements. No casting is required when we take out an element.
+Generics is not mandatory but it is often used with the collection classes.
+Collection classes
+There is no direct implementation for the java.util.Collection interface. The Collection interface has five sub interfaces.
+
+Set
+A set collection contains unique elements, so duplicates are not allowed. It is similar to a mathematical Set. When adding a new item to a set, the set calls the method int hashCode() of the item and compare it to the hash code of all the already inserted items. If the hash code has not been found, the item is added. If it is, the set now call the boolean equals(Object obj); method with all the set items. If all calls returns false, the item is inserted. If not, the item is not inserted.
+
+Detecting duplicate objects in Sets
+Set cannot have duplicates in it. You may wonder how duplicates are detected when we are adding an object to the Set. We have to see if that object exists in the Set or not. It is not enough to check the object references, the objects' values have to be checked as well.
+To do that, fortunately, each java object has the boolean equals(Object obj), method available inherited from Object. You need to override it. That method will be called by the Set implementation to compare the two objects to see if they are equal or not.
+There is a problem, though. What if I put two different type of objects to the Set. I put an Apple and an Orange. They can not be compared. Calling the equals() method would cause a ClassCastException. There are two solutions to this:
+Note:
+SortedSet
+The SortedSet interface is the same as the Set interface plus the elements in the SortedSet are sorted. It extends the Set Interface. All elements in the SortedSet must implement the Comparable Interface, furthermore all elements must be mutually comparable.
+Note that the ordering maintained by a sorted set must be consistent with equals if the sorted set is to correctly implement the Set interface. This is so because the Set interface is defined in terms of the equals operation, but a sorted set performs all element comparisons using its compare method, so two elements that are deemed equal by this method are, from the standpoint of the sorted set, equal.
+The SortedSet interface has additional methods due to the sorted nature of the 'Set'. Those are:
+List
+In a list collection, the elements are put in a certain order, and can be accessed by an index. Duplicates are allowed, the same element can be added twice to a list. It has the following implementations:
+
+Each node is related to an item of the linked list. To remove an element from the linked list the pointers need to be rearranged. After removing Node 2:
+Queue
+The Queue interface provides additional insertion, extraction, and inspection operations. There are FIFO (first in, first out) and LIFO (last in, first out) queues. This interface adds the following operations to the Collection interface:
+
+Complete UML class diagram
+
+Synchronization
+Synchronization is important when you are running several threads. Beware, synchronization does not mean that your collection is thread-safe. A thread-safe collection is also called a concurrent collection. Most of the popular collection classes have implementations for both single thread and multiple thread environments. The non-synchronized implementations are always faster. You can use the non-synchronized implementations in multiple thread environments, when you make sure that only one thread updates the collection at any given time.
+A new Java JDK package was introduced at Java 1.5, that is java.util.concurrent. This package supplies a few Collection implementations designed for use in multi-threaded environments.
+The following table lists all the synchronized collection classes:
+Custom collection
+The Java JDK collection implementations are quite powerful and good, so it is unlikely that you will need to write your own. The usage of the different collections are the same but the implementations are different. If the existing collection implementations do not meet your needs, you can write your version of the implementation. Your version of the implementation just needs to implement the same java.util.Collection interface, then you can switch to using your implementation and the code that is using the collection does not need to be changed.
+Use the Collection interface if you need to keep related (usually the same type of) objects together in a collection where you can:
+The advantages of using the Collection interface are:
+The Collection interface defines the following basic operations:
+Note that in addAll() we can add any type of collection. This is the beauty of using the Collection interface. You can have a LinkedList and just call the addAll(list) method, passing in a list. You can pass in a Vector, an ArrayList, a HashSet, a TreeSet, a YourImpOfCollection, ... All those different types of collection will be magically converted to a LinkedList.
+Let's have a closer look at this magic. The conversion is easy because the Collection interface defines a standard way of looping through the elements. The following code is a possible implementation of addAll() method of the LinkedList.
+The above code just iterates through the passed in collection and adds the elements to the linked list. You do not have to do that, since that is already defined. What you might need to code for is to loop through a Customer collection:
+Notice two things:
+
+To do: Add some exercises like the ones in Variables

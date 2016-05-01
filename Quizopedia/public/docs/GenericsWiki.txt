@@ -1,0 +1,44 @@
+https://en.wikibooks.org/wiki/Java_Programming/Generics
+Generics
+
+Java is a strongly typed language, so a field in a class may be typed like this:
+This ensures that, only Integer objects can be put in the field and a ClassCastException can't occur at runtime, only compile-time error can occur. Unfortunately, it can be used only with Integer objects. If you want to use the same class in another context with Strings, you have to generalize the type like this:
+But you will have ClassCastException at runtime again and you can't easily use your field. The solution is to use Generics.
+Generic class
+A generic class does not hard code the type of a field, a return value or a parameter. The class only indicates that a generic type should be the same, for a given object instance. The generic type is not specified in the class definition. It is specified during object instantiation. This allows the generic type to be different from an instance to another. So we should write our class this way:
+Here, the generic type is defined after the name of the class. Any new identifier can be chosen. Here, we have chosen T, which is the most common choice. The actual type is defined at the object instantiation:
+Although each object instance has its own type, each object instance is still strongly typed:
+A class can define as many generic types as you like. Choose a different identifier for each generic type and separate them by a comma:
+When a type that is defined with generic (for example, Collection<T>) is not used with generics (for example, Collection) is called a raw type.
+Generic method
+A generic type can be defined for just a method:
+Here a new identifier (D) has been chosen at the beginning of the method declaration. The type is specific to a method call and different types can be used for the same object instance:
+The actual type will be defined by the type of the method parameter. Hence, the generic type can't be defined only for the return value as it wouldn't be resolved. See the Class<T> section for a solution.
+Question 4.8: Consider the following class.
+What will be displayed on the console?
+aQuestion.getItem() is typed as a string.
+Wildcard Types
+As we have seen above, generics give the impression that a new container type is created with each different type parameter. We have also seen that in addition to the normal type checking, the type parameter has to match as well when we assign generics variables. In some cases this is too restrictive. What if we would like to relax this additional checking? What if we would like to define a collection variable that can hold any generic collection, regardless of the parameter type it holds? The wildcard type is represented by the character <?>, and pronounced Unknown, or Any-Type. Any-Type can be expressed also by <? extends Object>. Any-Type includes Interfaces, not only Classes. So now we can define a collection whose element type matches anything. See below:
+Upper bounded wildcards
+You can specify a restriction on the types of classes that may be used. For example, <? extends ClassName> only allows objects of class ClassName or a subclass. For example, to create a collection that may only contain "Serializable" objects, specify:
+The above code is valid because the String class is serializable. Use of a class that is not serializable would cause a compilation error. The added items can be retrieved as Serializable object. You can call methods of the Serializable interface or cast it to String. The following collection can only contain objects that extend the class Animal.
+Lower bounded wildcards
+<? super ClassName> specifies a restriction on the types of classes that may be used. For example, to declare a Comparator that can compare Dogs, you use:
+Now suppose you define a comparator that can compare Animals:
+Since Dogs are Animals, you can use this comparator to compare Dogs also. Comparators for any superclass of Dog can also compare Dog; but comparators for any strict subclass cannot.
+The above code is valid because the Animal class is a supertype of the Dog class. Use of a class that is not a supertype would cause a compilation error.
+Unbounded wildcard
+The advantage of the unbounded wildcard (i.e. <?>) compared to a raw type (i.e. without generic) is to explicitly say that the parameterized type is unknown, not any type. That way, all the operations that implies to know the type are forbidden to avoid unsafe operation. Consider the following code:
+This code will compile but this code may corrupt the collection if the collection only contains strings:
+This situation could have been avoided if the addAtBottom(Collection) method was defined with an unbounded wildcard: addAtBottom(Collection<?>). With this signature, it is impossible to compile a code that is dependent of the parameterized type. Only independent methods of a collection (clear(), isEmpty(), iterator(), remove(Object o), size(), ...) can be called. For instance, addAtBottom(Collection<?>) could contain the following code:
+Class<T>
+Since Java 1.5, the class java.lang.Class is generic. It is an interesting example of using generics for something other than a container class. For example, the type of String.class is Class<String>, and the type of Serializable.class is Class<Serializable>. This can be used to improve the type safety of your reflection code. In particular, since the newInstance() method in Class now returns T, you can get more precise types when creating objects reflectively. Now we can use the newInstance() method to return a new object with exact type, without casting. An example with generics:
+The same code without generics:
+Motivation
+Java was long criticized for the need to explicitly type-cast an element when it was taken out of a "container/collection" class. There was no way to enforce that a "collection" class contains only one type of object (e.g., to forbid at compile time that an Integer object is added to a Collection that should only contain Strings). This is possible since Java 1.5. In the first couple of years of Java evolution, Java did not have a real competitor. This has changed by the appearance of Microsoft C#. With Generics Java is better suited to compete against C#. Similar constructs to Java Generics exist in other languages, see Generic programming for more information. Generics were added to the Java language syntax in version 1.5. This means that code using Generics will not compile with Java 1.4 and less. Use of generics is optional. For backwards compatibility with pre-Generics code, it is okay to use generic classes without the generics type specification (<T>). In such a case, when you retrieve an object reference from a generic object, you will have to manually cast it from type Object to the correct type.
+Note for C++ programmers
+Java Generics are similar to C++ Templates in that both were added for the same reason. The syntax of Java Generic and C++ Template are also similar. There are some differences however. The C++ template can be seen as a kind of macro, in that a new copy of the code is generated for each generic type referenced. All extra code for templates is generated at compiler time. In contrast, Java Generics are built into the language. The same code is used for each generic type. For example:
+Both these objects appear as the same type at runtime (both ArrayList's). The generic type information is erased during compilation (type erasure). For example:
+is transformed by erasure into:
+Question 4.9: Consider the following class.
+Which lines will generate a compile error?

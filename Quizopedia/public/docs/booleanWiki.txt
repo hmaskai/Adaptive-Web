@@ -1,0 +1,4 @@
+https://en.wikibooks.org/wiki/Java_Programming/Types/boolean
+Java Programming/Types/boolean
+public class Relational { public static bool lessorequal(int x, int y, int z) {
+} }

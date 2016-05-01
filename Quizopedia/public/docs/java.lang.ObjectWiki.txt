@@ -1,0 +1,37 @@
+https://en.wikibooks.org/wiki/Java_Programming/API/java.lang.Object
+Java Programming/API/java.lang.Object
+
+
+java.lang.Object
+Object class is the superclass of all Java classes. All Java classes inherited from this class. This makes it possible that we can have methods that are available in all Java classes. This simplifies things compared to C++ where this is not the case.
+equals() Method
+Keep in mind that when you override equals(), you always need to also override hashCode() so the two methods are consistent. If two objects are equal, they must have the same hashcode.
+For more information also see Java Programming/Comparing Objects
+getClass() Method
+There is a Class object for each class in your program. Every array also belongs to a class that is reflected as a Class object that is shared by all arrays with the same element type and number of dimensions. The primitive Java types (boolean, byte, char, short, int, long, float, and double), and the keyword void are also represented as Class objects. Class has no public constructor. Instead Class objects are constructed automatically by the Java Virtual Machine as classes are loaded
+For more information see Class.
+The most popular use of the Class is to find out the object's class name during runtime.
+The output:
+hashCode() Method
+In most cases you should not override this method, since the default implementation of this method returns a unique number for the object. The number is used when the object is put into a collection. Finding an object in a big collection may take a while, if objects are compared one by one sequentially. To speed the search up, objects may be placed in a tree structure, weighted by an integer hash code. Comparing the hash code while navigating through the tree, the number of object comparisons can be reduced.
+To give you a general idea of how it may work, see the above diagram. Let's say we are searching object G. If at each 'node' of the tree we can decide which way to go, then by 3 steps we reach the object G.
+By constrast in a linear search:
+We would need 8 steps to reach the object G.
+So the search will be faster with the tree structure. Adding a new object however, will be slower because the tree structure needs to be maintained. The place of the new object in the tree has to be found first.
+toString() Methods
+This method can be used to convert an object to a String. It is automatically used in many places to convert objects to String; for example: in PrintStream, in StringBuffer, and for the string concatenation operator when used on objects.
+The default implementation returns a weird string with the class name and the hash code.
+For example:
+The toString() method is called on the objCust object.
+The toString() method can also be used for debugging:
+After that whenever in your code, you want to see what a customer object is, just call:
+Synchronizing Threads Methods
+In a multi-threaded environment, when more than one thread can access and modify a resource, the outcome could be unpredictable. For example, let's have a counter variable that is incremented by more than one thread.
+Beware! Synchronization is an ambiguous term. It doesn't consist of making all threads executing the same code section at the same time. It is the opposite. It prevents any two threads from executing the same code section at the same time. It synchronizes the end of one processing with the beginning of a second processing.
+The above code is built up by the following sub-operations:
+Let's say that two threads need to execute that code, and if the initial value of the counter variable is zero, we expect after the operations the value to be 2.
+In the above case Thread 1 operation is lost, because Thread 2 overwrites its value. We'd like Thread 2 to wait until Thread 1 finishes the operation. See below:
+
+
+
+See also:

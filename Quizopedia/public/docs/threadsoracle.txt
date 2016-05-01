@@ -1,0 +1,8 @@
+https://docs.oracle.com/javase/tutorial/essential/concurrency/threads.html
+Thread Objects
+Each thread is associated with an instance of the class Thread. There are two basic strategies for using Thread objects to create a concurrent application.
+This section documents the use of Thread objects. Executors are discussed with other high-level concurrency objects.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

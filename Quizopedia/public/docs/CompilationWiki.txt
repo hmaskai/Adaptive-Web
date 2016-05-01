@@ -1,0 +1,44 @@
+https://en.wikibooks.org/wiki/Java_Programming/Compilation
+Compilation
+
+In Java, programs are not compiled into executable files; they are compiled into bytecode (as discussed earlier), which the JVM (Java Virtual Machine) then executes at runtime. Java source code is compiled into bytecode when we use the javac compiler. The bytecode gets saved on the disk with the file extension .class. When the program is to be run, the bytecode is converted, using the just-in-time (JIT) compiler. The result is machine code which is then fed to the memory and is executed.
+Java code needs to be compiled twice in order to be executed:
+The Java classes/bytecode are compiled to machine code and loaded into memory by the JVM when needed the first time. This is different from other languages like C/C++ where programs are to be compiled to machine code and linked to create an executable file before it can be executed.
+Quick compilation procedure
+To execute your first Java program, follow the instructions below:
+If you obtain another message ending by 1 error or ... errors, there may be a mistake in your code. Are you sure all words are spelled correctly and with the exact case as shown? Are there semicolons and brackets in the appropriate spot? Are you missing a quote? Usually, modern IDEs would try coloring the entire source as a quote in this case.
+If your computer emits beeps, then you may have illegal characters in your HelloWorld.java.
+If no HelloWorld.class file has been created in the same folder, then you've got an error. Are you launching the javac program correctly?
+If you obtain an error message like Exception in thread "main" java.lang.NoSuchMethodError: main, your source file may have been badly written.
+Automatic Compilation of Dependent Classes
+In Java, if you have used any reference to any other java object, then the class for that object will be automatically compiled, if that was not compiled already. These automatic compilations are nested, and this continues until all classes are compiled that are needed to run the program. So it is usually enough to compile only the high level class, since all the dependent classes will be automatically compiled.
+However, you can't rely on this feature if your program is using reflection to create objects, or you are compiling for servlets or for a "jar", package. In these cases you should list these classes for explicit compilation.
+Packages, Subdirectories, and Resources
+Each Java top level class belongs to a package (covered in the chapter about Packages). This may be declared in a package statement at the beginning of the file; if that is missing, the class belongs to the unnamed package.
+For compilation, the file must be in the right directory structure. A file containing a class in the unnamed package must be in the current/root directory; if the class belongs to a package, it must be in a directory with the same name as the package.
+The convention is that package names and directory names corresponding to the package consist of only lower case letters.
+Top level package
+A class with this package declaration
+has to be in a directory named example.
+Subpackages
+A class with this package declaration
+has to be in a directory named en which has to be a sub-directory of wikibooks which in turn has to be a sub-directory of org resulting in org/wikibooks/en on Linux or org\wikibooks\en on Windows.
+Java programs often contain non-code files such as images and properties files. These are referred to generally as resources and stored in directories local to the classes in which they're used. For example, if the class com.example.ExampleApp uses the icon.png file, this file could be stored as /com/example/resources/icon.png. These resources present a problem when a program is complied, because javac does not copy them to wherever the .class files are being complied to (see above); it is up to the programmer to move the resource files and directories.
+Filename Case
+The Java source file name must be the same as the public class name that the file contains. There can be only one public class defined per file. The Java class name is case sensitive, as is the source file name.
+The naming convention for the class name is for it to start with a capital letter.
+Compiler Options
+Debugging and Symbolic Information
+To do: Complete this section.
+Ant
+The best way to build your application is to use a build tool. This checks all the needed dependencies and compiles only the needed class for the build. Ant tool is one of the best and the most popular build tools currently available. Ant is a build management tool designed to replace MAKE as the tool for automated builds of large Java applications. Like Java, and unlike MAKE, Ant is designed to be platform independent.
+Using Ant you would build your application from the command line by typing:
+The build.xml file contains all the information needed to build the application.
+Building a Java application requires certain tasks to be performed defined in a build.xml file. Those tasks may include not only compiling the code, but also copying code, packaging the program to a Jar, creating EJBs, running automated tests, doing ftp for the code to remote site, and so on. For some tasks a condition can be assigned, for example to compile only changed code, or do the task if that was not already done so. Tasks dependency can also be specified, which will make sure that the order of executions of the tasks are in the right order. For example, when compiling the code before packaging it to a jar, the package-to-jar task depends on the compilation task.
+The build.xml file is generally kept in the root directory of the java project. Ant parses this file and executes the tasks therein. Below we give an example build.xml file.
+Ant tool is written in Java and is open source, so it can be extended if there is a task you'd like to be done during the build that is not in the predefined tasks list. It is very easy to hook your ant task code to the other tasks: your code only needs to be in the classpath, and the Ant tool will load it at runtime. For more information about writing your own Ant tasks, please see the project website at http://ant.apache.org/.
+The next most popular way to build applications is using an Integrated Development Environment (IDE).
+The JIT compiler
+The Just-In-Time (JIT) compiler is the compiler that converts the byte-code to machine code. It compiles byte-code once and the compiled machine code is re-used again and again, to speed up execution. Early Java compilers compiled the byte-code to machine code each time it was used, but more modern compilers cache this machine code for reuse on the machine. Even then, java's JIT compiling was still faster than an "interpreter-language", where code is compiled from high level language, instead of from byte-code each time it was used.
+The standard JIT compiler runs on demand. When a method is called repeatedly, the JIT compiler analyzes the bytecode and produces highly efficient machine code, which runs very fast. The JIT compiler is smart enough to recognize when the code has already been compiled, so as the application runs, compilation happens only as needed. As Java applications run, they tend to become faster and faster, because the JIT can perform runtime profiling and optimization to the code to meet the execution environment. Methods or code blocks which do not run often receive less optimization; those which run often (so called hotspots) receive more profiling and optimization.
+

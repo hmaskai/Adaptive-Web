@@ -1,0 +1,11 @@
+https://docs.oracle.com/javase/tutorial/java/javaOO/QandE/enum-answers.html
+Answers to Questions and Exercises: Enum Types
+Answer: False. All enums implicitly extend java.lang.Enum. Because a class can only extend one parent, the Java language does not support multiple inheritance of state, and therefore an enum cannot extend anything else.
+Exercise: Rewrite the class Card from the exercise in Questions and Exercises: Classes so that it represents the rank and suit of a card with enum types.
+Answer: See Card3.java, Suit.java, and Rank.java.
+Exercise: Rewrite the Deck class.
+Answer: See Deck3.java.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

@@ -1,0 +1,209 @@
+https://docs.oracle.com/javase/tutorial/java/generics/QandE/generics-answers.html
+Answer to Questions and Exercises: Generics
+CODE:
+public final class Algorithm {
+    public static <T> int countIf(Collection<T> c, UnaryPredicate<T> p) {
+
+        int count = 0;
+        for (T elem : c)
+            if (p.test(elem))
+                ++count;
+        return count;
+    }
+}
+CODE:
+public interface UnaryPredicate<T> {
+    public boolean test(T obj);
+}
+CODE:
+import java.util.*;
+
+class OddPredicate implements UnaryPredicate<Integer> {
+    public boolean test(Integer i) { return i % 2 != 0; }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Collection<Integer> ci = Arrays.asList(1, 2, 3, 4);
+        int count = Algorithm.countIf(ci, new OddPredicate());
+        System.out.println("Number of odd integers = " + count);
+    }
+}
+CODE:
+Number of odd integers = 2
+CODE:
+public final class Algorithm {
+    public static <T> T max(T x, T y) {
+        return x > y ? x : y;
+    }
+}
+CODE:
+public final class Algorithm {
+    public static <T> void swap(T[] a, int i, int j) {
+        T temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+}
+CODE:
+public class Pair<K, V> {
+
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public K getKey(); { return key; }
+    public V getValue(); { return value; }
+
+    public void setKey(K key)     { this.key = key; }
+    public void setValue(V value) { this.value = value; }
+
+    private K key;
+    private V value;
+}
+CODE:
+public class Pair {
+
+    public Pair(Object key, Object value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public Object getKey()   { return key; }
+    public Object getValue() { return value; }
+
+    public void setKey(Object key)     { this.key = key; }
+    public void setValue(Object value) { this.value = value; }
+
+    private Object key;
+    private Object value;
+}
+CODE:
+public static <T extends Comparable<T>>
+    int findFirstGreaterThan(T[] at, T elem) {
+    // ...
+}
+CODE:
+public static int findFirstGreaterThan(Comparable[] at, Comparable elem) {
+    // ...
+    }
+CODE:
+public static void print(List<? extends Number> list) {
+    for (Number n : list)
+        System.out.print(n + " ");
+    System.out.println();
+}
+CODE:
+import java.util.*;
+
+public final class Algorithm {
+    public static <T extends Object & Comparable<? super T>>
+        T max(List<? extends T> list, int begin, int end) {
+
+        T maxElem = list.get(begin);
+
+        for (++begin; begin < end; ++begin)
+            if (maxElem.compareTo(list.get(begin)) < 0)
+                maxElem = list.get(begin);
+        return maxElem;
+    }
+}
+CODE:
+public class Singleton<T> {
+
+    public static T getInstance() {
+        if (instance == null)
+            instance = new Singleton<T>();
+
+        return instance;
+    }
+
+    private static T instance = null;
+}
+CODE:
+class Shape { /* ... */ }
+class Circle extends Shape { /* ... */ }
+class Rectangle extends Shape { /* ... */ }
+
+class Node<T> { /* ... */ }
+CODE:
+Node<Circle> nc = new Node<>();
+Node<Shape>  ns = nc;
+CODE:
+class Node<T> implements Comparable<T> {
+    public int compareTo(T obj) { /* ... */ }
+    // ...
+}
+CODE:
+Node<String> node = new Node<>();
+Comparable<String> comp = node;
+CODE:
+public static <T>
+    int findFirst(List<T> list, int begin, int end, UnaryPredicate<T> p)
+CODE:
+import java.util.*;
+
+public final class Algorithm {
+
+    public static <T>
+        int findFirst(List<T> list, int begin, int end, UnaryPredicate<T> p) {
+
+        for (; begin < end; ++begin)
+            if (p.test(list.get(begin)))
+                return begin;
+        return -1;
+    }
+
+    // x > 0 and y > 0
+    public static int gcd(int x, int y) {
+        for (int r; (r = x % y) != 0; x = y, y = r) { }
+            return y;
+    }
+}
+CODE:
+public interface UnaryPredicate<T> {
+    public boolean test(T obj);
+}
+CODE:
+import java.util.*;
+
+class RelativelyPrimePredicate implements UnaryPredicate<Integer> {
+    public RelativelyPrimePredicate(Collection<Integer> c) {
+        this.c = c;
+    }
+
+    public boolean test(Integer x) {
+        for (Integer i : c)
+            if (Algorithm.gcd(x, i) != 1)
+                return false;
+
+        return c.size() > 0;
+    }
+
+    private Collection<Integer> c;
+}
+
+public class Test {
+    public static void main(String[] args) throws Exception {
+
+        List<Integer> li = Arrays.asList(3, 4, 6, 8, 11, 15, 28, 32);
+        Collection<Integer> c = Arrays.asList(7, 18, 19, 25);
+        UnaryPredicate<Integer> p = new RelativelyPrimePredicate(c);
+
+        int i = ALgorithm.findFirst(li, 0, li.size(), p);
+
+        if (i != -1) {
+            System.out.print(li.get(i) + " is relatively prime to ");
+            for (Integer k : c)
+                System.out.print(k + " ");
+            System.out.println();
+        }
+    }
+}
+CODE:
+11 is relatively prime to 7 18 19 25
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

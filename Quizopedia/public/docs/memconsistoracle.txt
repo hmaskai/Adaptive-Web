@@ -1,0 +1,20 @@
+https://docs.oracle.com/javase/tutorial/essential/concurrency/memconsist.html
+Memory Consistency Errors
+Memory consistency errors occur when different threads have inconsistent views of what should be the same data. The causes of memory consistency errors are complex and beyond the scope of this tutorial. Fortunately, the programmer does not need a detailed understanding of these causes. All that is needed is a strategy for avoiding them.
+The key to avoiding memory consistency errors is understanding the happens-before relationship. This relationship is simply a guarantee that memory writes by one specific statement are visible to another specific statement. To see this, consider the following example. Suppose a simple int field is defined and initialized:
+CODE:
+int counter = 0;
+The counter field is shared between two threads, A and B. Suppose thread A increments counter:
+CODE:
+counter++;
+Then, shortly afterwards, thread B prints out counter:
+CODE:
+System.out.println(counter);
+If the two statements had been executed in the same thread, it would be safe to assume that the value printed out would be "1". But if the two statements are executed in separate threads, the value printed out might well be "0", because there's no guarantee that thread A's change to counter will be visible to thread B ? unless the programmer has established a happens-before relationship between these two statements.
+There are several actions that create happens-before relationships. One of them is synchronization, as we will see in the following sections.
+We've already seen two actions that create happens-before relationships.
+For a list of actions that create happens-before relationships, refer to the Summary page of the java.util.concurrent package..
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

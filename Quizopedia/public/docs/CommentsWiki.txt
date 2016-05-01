@@ -1,0 +1,27 @@
+https://en.wikibooks.org/wiki/Java_Programming/Comments
+Comments
+
+A comment allows to insert text that will not be compiled nor interpreted. It can appear anywhere in the source code where whitespaces are allowed.
+It is useful for explaining what the source code does by:
+It can also be used to make the compiler ignore a portion of code: temporary code for debugging, code under development...
+Syntax
+The comments in Java use the same syntax as in C++.
+An end-of-line comment starts with two slashes and ends with the end of the line. This syntax can be used on a single line too.
+A comment on several lines is framed with '/' + '*' and '*' + '/'.
+By convention, subsequent lines of slash-star comments begin with a star aligned under the star in the open comment sequence, but this is not required. Never nest a slash-star comment in another slash-star comment. If you accidentally nest such comments, you will probably get a syntax error from the compiler soon after the first star-slash sequence.
+If you need to have the sequence */ inside a comment you can use html numeric entities: *&#47;.
+Slash-star comments may also be placed between any Java tokens, though not recommended:
+However, comments are not parsed as comments when they occur in string literals.
+It results in a 33 character string.
+Question 3.26: Consider the following code:
+What is printed in the standard output?
+The highlighted lines are code lines but line 11 does nothing and only the first part of line 12 is code.
+Comments and unicode
+Be aware that Java still interprets Unicode sequences within comments. For example, the Unicode sequence \u002a\u002f (whose codepoints correspond to */) is processed early in the Java compiler's lexical scanning of the source file, even before comments are processed, so this is a valid star-slash comment in Java:
+and is lexically equivalent to
+(The '*' character is Unicode 002A and the '/' character is Unicode 002F.)
+Similar caveats apply to newline characters in slash-slash comments.
+For example:
+That is because \u000a is Unicode for a new line, making the compiler think that you have added a new line when you haven't.
+Javadoc comments
+Javadoc comments are a special case of slash-star comments.

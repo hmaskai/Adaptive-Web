@@ -1,0 +1,40 @@
+https://en.wikibooks.org/wiki/Java_Programming/Struts
+Java Programming/Struts
+This reference is under development. All Struts developers are requested to contribute and help in expanding this reference
+Struts is the most popular framework for developing Java based web applications. Struts is being developed as an open source project started by Apache Software Foundation . Struts framework is based on Model View Controller (MVC) architecture.
+
+
+Preface
+Action Framework in a Nutshell
+Within the MVC context the struts framework provides its own web Controller component and integrates with other technologies to provide the Model and the View. For the Model, the framework can interact with standard data access technologies, like JDBC and EJB , as well as most any third-party packages, like Hibernate , iBATIS , or Object Relational Bridge . For the View , the framework works well with JavaServer Pages , including JSTL and JSF , as well as Velocity Templates , XSLT , and other presentation systems.
+The framework's Controller acts as a bridge between the application's Model and the web View. When a request is received, the Controller invokes an Action class. The Action class consults with the Model (or, preferably, a Facade representing your Model) to examine or update the application's state. The framework provides an ActionForm class to help transfer data between Model and View.
+Most often, the Model is represented as a set of JavaBeans . Typically, developers will use the Commons BeanUtils to transfer data between ActionForms and the Model objects (or a Facade). Preferably, the Model will do the "heavy lifting", and the Action will act as a "traffic cop" or adapter.
+Struts Config in a Nutshell
+A web application uses a deployment descriptor to initialize resources like servlets and taglibs . The deployment descriptor is formatted as a XML document and named "web.xml". Likewise, the framework uses a configuration file to initialize its own resources. These resources include ActionForms to collect input from users, ActionMappings to direct input to server-side Actions , and ActionForwards to select output pages.
+The initialisation of struts is acheived through the inclusion of the following in the web.xml file
+Here's a simple configuration (struts-config.xml) for a login workflow:
+There are several other resources you can specify in the framework's configuration file. You can specify validations for the ActionForms in an XML descriptor, using the Struts Validator. A standard extension, Tiles , helps you build pages from smaller fragments.
+Struts Action Framework is extensible. Every class deployed by the framework can be replaced by your own default class. The properties of your default class can be set using the Digester's set-property feature. This is one reason why there are so many contributor extensions.
+Tiles is a contributor extension.
+Features
+Screen definitions
+Create a screen by assembling Tiles : header, footer, menu, body, etc. Definitions can take place:
+Definitions provide an inheritance mechanism : a definition can extend another one, and override parameters.
+Layouts
+Define common page layouts and reuse them across your web site. Define menu layouts, and use them by passing lists of items and links. Define a portal layout, use it by passing a list of Tiles (pages) to show. Reuse existing layouts, or define your own.
+Dynamic page building
+Tiles can be gathered dynamically during page reload. It is possible to change any attribute: layout, list of Tiles in portal, list of menu items, etc.
+Reuse of Tiles / Components
+If well defined, a Tile can be reused across multiple applications. Dynamic attributes are used to parameterize Tiles. It is possible to define a library of reusable Tiles. Build a page by assembling predefined components, giving them appropriate parameters.
+Internationalization (i18n)
+It is possible to load different tiles according to Locale. A mechanism similar to Java properties files is used for definitions files: you can have one definition file per Locale. The appropriate definition is loaded according to the current Locale.
+Multi-channels
+It is possible to load different Tiles according to a key. For example, the key could be user privilege, browser type, arbitrary name stored in session, etc. A mechanism similar to Java properties files is used for definitions files: you can have one definition file per key. The appropriate definition is loaded according to the key.
+Prerequisites
+Apart from basic understanding of building a web application. The reader is required to have some sort of working knowledge in the following technologies.
+Getting Started
+Struts framework provides the following benefits over conventional methods of Web Application Development.
+These benefits are gained because Struts provides a system based on the "Model 2" paradigm of Java web application design, while also providing a framework for the application that is cleaner than a series of J2EE servlets.
+Struts XML Tags and Attributes Reference
+(The following list is in the same order as the example above (of a simple configuration) and the example in link below of Struts tutorial on JBoss.)
+Further Reading

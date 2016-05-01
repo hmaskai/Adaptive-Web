@@ -1,0 +1,13 @@
+https://en.wikibooks.org/wiki/Java_Programming/Large_numbers
+Large numbers
+
+The integer primitive type with the largest range of value is the long, from -263 to 263-1. If you need greater or lesser values, you have to use the BigInteger class in the package java.math. A BigInteger object can represent any integer (as large as the RAM on the computer can hold) as it is not mapped on a primitive type. Respectively, you need to use the BigDecimal class for great decimal numbers.
+However, as these perform much slower than primitive types, it is recommended to use primitive types when it is possible.
+BigInteger
+The BigInteger class represents integers of almost any size. As with other objects, they need to be constructed. Unlike regular numbers, the BigInteger represents an immutable object - methods in use by the BigInteger class will return a new copy of a BigInteger.
+To instantiate a BigInteger, you can create it from either byte array, or from a string. For example:
+BigInteger cannot use the normal Java operators. They use the methods provided by the class.
+It is possible to convert to a long, but the long may not be large enough.
+BigDecimal
+The BigInteger class cannot handle decimal numbers. The BigDecimal class represents a floating point value of arbitrary precision. It is composed of both a BigInteger, and a scale value (represented by a 32-bit integer).
+To do: Add some exercises like the ones in Variables

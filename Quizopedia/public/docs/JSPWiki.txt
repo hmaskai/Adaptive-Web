@@ -1,0 +1,5 @@
+https://en.wikibooks.org/wiki/Java_Programming/JSP
+Java EE Programming/JavaServer Pages
+Here is a minimalist tutorial to create a JSP using Eclipse.
+On the URL, helloworld comes from the name of the WAR file we have created and firstpage comes from the markup <url-pattern> in the web.xml file.
+To do: Explain how to build a WAR without an IDE.

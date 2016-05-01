@@ -53,7 +53,7 @@
 	  </div><!-- /.container-fluid -->
 	</nav>
 	<div class="container">
-	<h3>Question:</h3>
+	
 	<?php 
 					$q = "select * from questions where question_id =".$_POST['question_id'];
 					$result = $database->query($q);
@@ -77,7 +77,7 @@
 					?>
 					
 					
-						<div style="margin-left:45%">
+						<div style="margin-left:33%">
 							
 							<div class="radionew">
 							<label for="radio1" ><?php echo $question["option_1"];?></label>
@@ -99,32 +99,27 @@
 						
 					<?php }?>
 	<h3 style="clear:left;">Recommendations for this question:</h3>
-<?php
-
-/*echo "This page will have all the recommendations";
-$_GLOBAL['date']=$_POST['str'];
-echo $_GLOBAL['date'];
-
-echo "Hello it's me----------------------";
-include_once("../includes/database.php");
-//chdir("E:\solr\solr-5.5.0\bin");
-
-//shell_exec("solr start -p 8983");
+	
+	
+ <?php 
+ $q = "select tags from questions where question_id=".$_POST['question_id'];
+ $tags = $database->fetch_array($database->query($q));
+ 
+ //print_r($tags['tags']);
  
  
-//chdir("C:\\xampp\\htdocs\\Quiz-Of-The-Day\\Quizopedia\\public");
-$q = "select question_text from questions where question_id =".$_POST['question_id'];
-$question = $database->fetch_array($database->query($q));
-//echo $question["question_text"];
-echo $question["question_text"];
- $output = shell_exec("java -jar solrJarCommandLine1.jar ".$question["question_text"]);
- $recoArray = (explode(",",$output));
+ $output = shell_exec("java -jar LuceneFinal.jar 1 ".$tags['tags']);
+ $links = explode(",",$output);
+  //echo sizeof($links);
+  //$links = array explode ( ">" , string $output[, int $limit = PHP_INT_MAX ]);
+ $i=0;
+ while($i < sizeof($links)){
+	 
+	 echo ($i+1).". <a href=".$links[$i].">".$links[$i]."</a><br/>";
+	 $i++;
+ }
  
-// string shell_exec ( string $cmd )
- 
- echo $recoArray[0];
- */
-?>
+ ?>
 	
 	<h3>What your peers have to say:</h3>
 	</div>

@@ -1,0 +1,56 @@
+https://docs.oracle.com/javase/tutorial/java/javaOO/QandE/objects-answers.html
+Answers to Questions and Exercises: Objects
+Question: What's wrong with the following program?
+CODE:
+public class SomethingIsWrong {
+    public static void main(String[] args) {
+        Rectangle myRect;
+        myRect.width = 40;
+        myRect.height = 50;
+        System.out.println("myRect's area is " + myRect.area());
+    }
+}
+Answer: The code never creates a Rectangle object. With this simple program, the compiler generates an error. However, in a more realistic situation, myRect might be initialized to null in one place, say in a constructor, and used later. In that case, the program will compile just fine, but will generate a NullPointerException at runtime.
+Question: The following code creates one array and one string object. How many references to those objects exist after the code executes? Is either object eligible for garbage collection?
+CODE:
+...
+String[] students = new String[10];
+String studentName = "Peter Smith";
+students[0] = studentName;
+studentName = null;
+...
+Answer: There is one reference to the students array and that array has one reference to the string Peter Smith. Neither object is eligible for garbage collection. The array students is not eligible for garbage collection because it has one reference to the object studentName even though that object has been assigned the value null. The object studentName is not eligible either because students[0] still refers to it.
+Question: How does a program destroy an object that it creates?
+Answer: A program does not explicitly destroy objects. A program can set all references to an object to null so that it becomes eligible for garbage collection. But the program does not actually destroy objects.
+Exercise: Fix the program called SomethingIsWrong shown in Question 1.
+Answer: See SomethingIsRight:
+CODE:
+public class SomethingIsRight {
+    public static void main(String[] args) {
+        Rectangle myRect = new Rectangle();
+        myRect.width = 40;
+        myRect.height = 50;
+        System.out.println("myRect's area is " + myRect.area());
+    }
+}
+Exercise: Given the following class, called NumberHolder, write some code that creates an instance of the class, initializes its two member variables, and then displays the value of each member variable.
+CODE:
+public class NumberHolder {
+    public int anInt;
+    public float aFloat;
+}
+Answer: See NumberHolderDisplay:
+CODE:
+public class NumberHolderDisplay {
+    public static void main(String[] args) {
+	NumberHolder aNumberHolder = new NumberHolder();
+	aNumberHolder.anInt = 1;
+	aNumberHolder.aFloat = 2.3f;
+	System.out.println(aNumberHolder.anInt);
+	System.out.println(aNumberHolder.aFloat);
+    }
+}
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

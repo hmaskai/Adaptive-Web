@@ -1,0 +1,16 @@
+https://docs.oracle.com/javase/tutorial/java/IandI/QandE/interfaces-questions.html
+Questions and Exercises: Interfaces
+CODE:
+public interface SomethingIsWrong {
+    void aMethod(int aValue){
+        System.out.println("Hi Mom");
+    }
+}
+CODE:
+public interface Marker {
+}
+Check your answers.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

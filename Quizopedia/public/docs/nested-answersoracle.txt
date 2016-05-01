@@ -1,0 +1,43 @@
+https://docs.oracle.com/javase/tutorial/java/javaOO/QandE/nested-answers.html
+Answers to Questions and Exercises: Nested Classes
+Question: The program Problem.java doesn't compile. What do you need to do to make it compile? Why?
+Answer: Delete static in front of the declaration of the Inner class. An static inner class does not have access to the instance fields of the outer class. See ProblemSolved.java.
+Use the Java API documentation for the Box class (in the javax.swing package) to help you answer the following questions.
+Question: What static nested class does Box define?
+Answer: Box.Filler
+Question: What inner class does Box define?
+Answer: Box.AccessibleBox
+Question: What is the superclass of Box's inner class?
+Answer: [java.awt.]Container.AccessibleAWTContainer
+Question: Which of Box's nested classes can you use from any class?
+Answer: Box.Filler
+Question: How do you create an instance of Box's Filler class?
+Answer: new Box.Filler(minDimension, prefDimension, maxDimension)
+Exercise: Get the file Class1.java. Compile and run Class1. What is the output?
+Answer: InnerClass1: getString invoked. InnerClass1: getAnotherString invoked.
+Exercise: The following exercises involve modifying the class DataStructure.java, which the section Inner Class Example discusses.
+Define a method named print(DataStructureIterator iterator). Invoke this method with an instance of the class EvenIterator so that it performs the same function as the method printEven.
+Hint: These statements do not compile if you specify them in the main method:
+CODE:
+DataStructure ds = new DataStructure();
+ds.print(new EvenIterator());
+The compiler generates the error message, "non-static variable this cannot be referenced from a static context" when it encounters the expression new EvenIterator(). The class EvenIterator is an inner, non-static class. This means that you can create an instance of EvenIterator only inside an instance of the outer class, DataStructure.
+You can define a method in DataStructure that creates and returns a new instance of EvenIterator.
+Invoke the method print(DataStructureIterator iterator) so that it prints elements that have an odd index value. Use an anonymous class as the method's argument instead of an instance of the interface DataStructureIterator.
+Hint: You cannot access the private members SIZE and arrayOfInts outside the class DataStructure, which means that you cannot access these private members from an anonymous class defined outside DataStructure.
+You can define methods that access the private members SIZE and arrayOfInts and then use them in your anonymous class.
+Define a method named print(java.util.Function<Integer, Boolean> iterator) that performs the same function as print(DataStructureIterator iterator). Invoke this method with a lambda expression to print elements that have an even index value. Invoke this method again with a lambda expression to print elements that have an odd index value.
+Hint: In this print method, you can step though the elements contained in the array arrayOfInts with a for expression. For each index value, invoke the method function.apply. If this method returns a true value for a particular index value, print the element contained in that index value.
+To invoke this print method to print elements that have an even index value, you can specify a lambda expression that implements the method Boolean Function.apply(Integer t). This lambda expression takes one Integer argument (the index) and returns a Boolean value (Boolean.TRUE if the index value is even, Boolean.FALSE otherwise).
+Define two methods so that these statements print elements that have an even index value and then elements that have an odd index value:
+CODE:
+DataStructure ds = new DataStructure()
+// ...
+ds.print(DataStructure::isEvenIndex);
+ds.print(DataStructure::isOddIndex);
+Hint: Create two methods in the class DataStructure named isEvenIndex and isOddIndex that have the same parameter list and return type as the abstract method Boolean Function<Integer, Boolean>.apply(Integer t). This means that the methods take one Integer argument (the index) and return a Boolean value.
+Answer: See the file DataStructure.java.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

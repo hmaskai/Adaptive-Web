@@ -1,0 +1,96 @@
+https://docs.oracle.com/javase/tutorial/essential/regex/pattern.html
+Methods of the Pattern Class
+Until now, we've only used the test harness to create Pattern objects in their most basic form. This section explores advanced techniques such as creating patterns with flags and using embedded flag expressions. It also explores some additional useful methods that we haven't yet discussed.
+The Pattern class defines an alternate compile method that accepts a set of flags affecting the way the pattern is matched. The flags parameter is a bit mask that may include any of the following public static fields:
+In the following steps we will modify the test harness, RegexTestHarness.java to create a pattern with case-insensitive matching.
+First, modify the code to invoke the alternate version of compile:
+CODE:
+Pattern pattern = 
+Pattern.compile(console.readLine("%nEnter your regex: "),
+Pattern.CASE_INSENSITIVE);
+Then compile and run the test harness to get the following results:
+CODE:
+Enter your regex: dog
+Enter input string to search: DoGDOg
+I found the text "DoG" starting at index 0 and ending at index 3.
+I found the text "DOg" starting at index 3 and ending at index 6.
+As you can see, the string literal "dog" matches both occurences, regardless of case. To compile a pattern with multiple flags, separate the flags to be included using the bitwise OR operator "|". For clarity, the following code samples hardcode the regular expression instead of reading it from the Console:
+CODE:
+pattern = Pattern.compile("[az]$", Pattern.MULTILINE | Pattern.UNIX_LINES);
+You could also specify an int variable instead:
+CODE:
+final int flags = Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE;
+Pattern pattern = Pattern.compile("aa", flags);
+
+It's also possible to enable various flags using embedded flag expressions. Embedded flag expressions are an alternative to the two-argument version of compile, and are specified in the regular expression itself. The following example uses the original test harness, RegexTestHarness.java with the embedded flag expression (?i) to enable case-insensitive matching.
+CODE:
+Enter your regex: (?i)foo
+Enter input string to search: FOOfooFoOfoO
+I found the text "FOO" starting at index 0 and ending at index 3.
+I found the text "foo" starting at index 3 and ending at index 6.
+I found the text "FoO" starting at index 6 and ending at index 9.
+I found the text "foO" starting at index 9 and ending at index 12.
+Once again, all matches succeed regardless of case.
+The embedded flag expressions that correspond to Pattern's publicly accessible fields are presented in the following table:
+The Pattern class defines a convenient matches method that allows you to quickly check if a pattern is present in a given input string. As with all public static methods, you should invoke matches by its class name, such as Pattern.matches("\\d","1");. In this example, the method returns true, because the digit "1" matches the regular expression \d.
+The split method is a great tool for gathering the text that lies on either side of the pattern that's been matched. As shown below in SplitDemo.java, the split method could extract the words "one two three four five" from the string "one:two:three:four:five":
+CODE:
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+public class SplitDemo {
+
+    private static final String REGEX = ":";
+    private static final String INPUT =
+        "one:two:three:four:five";
+    
+    public static void main(String[] args) {
+        Pattern p = Pattern.compile(REGEX);
+        String[] items = p.split(INPUT);
+        for(String s : items) {
+            System.out.println(s);
+        }
+    }
+}
+CODE:
+OUTPUT:
+
+one
+two
+three
+four
+five
+For simplicity, we've matched a string literal, the colon (:) instead of a complex regular expression. Since we're still using Pattern and Matcher objects, you can use split to get the text that falls on either side of any regular expression. Here's the same example, SplitDemo2.java, modified to split on digits instead:
+CODE:
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+public class SplitDemo2 {
+
+    private static final String REGEX = "\\d";
+    private static final String INPUT =
+        "one9two4three7four1five";
+
+    public static void main(String[] args) {
+        Pattern p = Pattern.compile(REGEX);
+        String[] items = p.split(INPUT);
+        for(String s : items) {
+            System.out.println(s);
+        }
+    }
+}
+CODE:
+OUTPUT:
+
+one
+two
+three
+four
+five
+You may find the following methods to be of some use as well:
+Regular expression support also exists in java.lang.String through several methods that mimic the behavior of java.util.regex.Pattern. For convenience, key excerpts from their API are presented below.
+There is also a replace method, that replaces one CharSequence with another:
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

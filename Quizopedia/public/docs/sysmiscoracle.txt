@@ -1,0 +1,10 @@
+https://docs.oracle.com/javase/tutorial/essential/environment/sysmisc.html
+Miscellaneous Methods in System
+This section describes some of the methods in System that aren't covered in the previous sections.
+The arrayCopy method efficiently copies data between arrays. For more information, refer to Arrays in the Language Basics lesson.
+The currentTimeMillis and nanoTime methods are useful for measuring time intervals during execution of an application. To measure a time interval in milliseconds, invoke currentTimeMillis twice, at the beginning and end of the interval, and subtract the first value returned from the second. Similarly, invoking nanoTime twice measures an interval in nanoseconds.
+The exit method causes the Java virtual machine to shut down, with an integer exit status specified by the argument. The exit status is available to the process that launched the application. By convention, an exit status of 0 indicates normal termination of the application, while any other value is an error code.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

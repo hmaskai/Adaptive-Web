@@ -1,0 +1,30 @@
+https://en.wikibooks.org/wiki/Java_Programming/Comparing_Objects
+Comparing Objects
+
+In Java, we can distinguish two kinds of equality.
+If two objects are equal in reference, they are equal in value too.
+Comparing for reference equality
+The == operator can be used to check if two object references point to the same object.
+Comparing for value equality
+To be able to compare two Java objects of the same class the boolean equals(Object obj) method must be overriden and implemented by the class.
+The implementor decides which values must be equal to consider two objects to be equal. For example in the below class, the name and the address must be equal but not the description.
+After the equals() method is overriden, two objects from the same class can be compared like this:
+Note that equal objects must have equal hash codes. Therefore, when overriding the equals method, you must also override the hashCode method. Failure to do so violates the general contract for the hashCode method, and any classes that use the hash code, such as HashMap will not function properly.
+Sorting/Ordering
+In Java, there are several existing methods that already sort objects from any class like Collections.sort(List<T> list). However, Java needs to know the comparison rules between two objects. So when you define a new class and want the objects of your class to be sortable, you have to implement the Comparable and redefine the compareTo(Object obj) method.
+Let's say that the name is more important than the address and the description is ignored.
+Objects that implement this interface can be used as keys in a sorted map or elements in a sorted set, without the need to specify a comparator.
+The natural ordering for a class C is said to be consistent with equals if and only if e1.compareTo((Object) e2) == 0 has the same boolean value as e1.equals((Object) e2) for every e1 and e2 of class C. Note that null is not an instance of any class, and e.compareTo(null) should throw a NullPointerException even though e.equals(null) returns false.
+It is strongly recommended (though not required) that natural orderings be consistent with equals. This is because sorted sets (and sorted maps) without explicit comparators behave "strangely" when they are used with elements (or keys) whose natural ordering is inconsistent with equals. In particular, such a sorted set (or sorted map) violates the general contract for set (or map), which is defined in terms of the equals method.
+Change Sorting/Ordering
+Sometimes we may want to change the ordering of a collection of objects from the same class. We may want to order descending or ascending order. We may want to sort by name or by address.
+We need to create a class for each way of ordering. It has to implement the Comparator interface.
+Since Java 5.0, the Comparator interface is generic; that means when you implement it, you can specify what type of objects your comparator can compare.
+The above class then can be associated with a SortedSet or other collections that support sorting.
+Using the Iterator the orderedCustomers collection can be iterated in order of sorted by name.
+A List can be sorted by the Collections' sort method.
+Sorts the specified list according to the order induced by the specified comparator. All elements in the list must be mutually comparable using the specified comparator.
+An array of objects can also be sorted with the help of a Comparator.
+Sorts the specified array of Customer objects (customerArray) according to the order induced by the specified comparator. All elements in the array must be mutually comparable by the specified comparator.
+
+To do: Add some exercises like the ones in Variables

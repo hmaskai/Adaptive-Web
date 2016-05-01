@@ -1,0 +1,10 @@
+https://docs.oracle.com/javase/tutorial/java/nutsandbolts/QandE/questions_expressions.html
+Questions and Exercises: Expressions, Statements, and Blocks
+CODE:
+1 * 2 * 3
+Identify the following kinds of expression statements:
+Check your answers
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

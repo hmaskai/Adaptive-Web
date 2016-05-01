@@ -1,0 +1,15 @@
+https://docs.oracle.com/javase/tutorial/essential/regex/QandE/answers.html
+Answers to Questions and Exercises:
+Answer:
+Answer: Each character in the string resides in its own cell. Index positions point between cells. The string "foo" starts at index 0 and ends at index 3, even though the characters only occupy cells 0, 1, and 2.
+Answer: An ordinary character in a regular expression matches itself. A metacharacter is a special character that affects the way a pattern is matched. The letter A is an ordinary character. The punctuation mark . is a metacharacter that matches any single character.
+Answer: There are two ways:
+Answer: This is a character class. It matches any single character that is in the class of characters specified by the expression between the brackets.
+Answer:
+Answer:
+Answer: The expression consists of a capturing group, (dog), followed by a greedy quantifier {3}. It matches the string "dogdogdog".
+Solution: ([A-Z][a-zA-Z]*)\s\1
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

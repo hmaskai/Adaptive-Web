@@ -1,0 +1,33 @@
+https://docs.oracle.com/javase/tutorial/java/IandI/QandE/inherit-questions.html
+Questions and Exercises: Inheritance
+1. Consider the following two classes:
+CODE:
+public class ClassA {
+    public void methodOne(int i) {
+    }
+    public void methodTwo(int i) {
+    }
+    public static void methodThree(int i) {
+    }
+    public static void methodFour(int i) {
+    }
+}
+
+public class ClassB extends ClassA {
+    public static void methodOne(int i) {
+    }
+    public void methodTwo(int i) {
+    }
+    public void methodThree(int i) {
+    }
+    public static void methodFour(int i) {
+    }
+}
+a. Which method overrides a method in the superclass? b. Which method hides a method in the superclass? c. What do the other methods do? 2. Consider the Card, Deck, and DisplayDeck classes you wrote in Questions and Exercises: Classes. What Object methods should each of these classes override?
+1. Write the implementations for the methods that you answered in question 2.
+
+Check your answers.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

@@ -1,0 +1,23 @@
+https://docs.oracle.com/javase/tutorial/essential/io/check.html
+Checking a File or Directory
+You have a Path instance representing a file or directory, but does that file exist on the file system? Is it readable? Writable? Executable?
+The methods in the Path class are syntactic, meaning that they operate on the Path instance. But eventually you must access the file system to verify that a particular Path exists, or does not exist. You can do so with the exists(Path, LinkOption...) and the notExists(Path, LinkOption...) methods. Note that !Files.exists(path) is not equivalent to Files.notExists(path). When you are testing a file's existence, three results are possible:
+If both exists and notExists return false, the existence of the file cannot be verified.
+To verify that the program can access a file as needed, you can use the isReadable(Path), isWritable(Path), and isExecutable(Path) methods.
+The following code snippet verifies that a particular file exists and that the program has the ability to execute the file.
+CODE:
+Path file = ...;
+boolean isRegularExecutableFile = Files.isRegularFile(file) &
+         Files.isReadable(file) & Files.isExecutable(file);
+When you have a file system that uses symbolic links, it is possible to have two different paths that locate the same file. The isSameFile(Path, Path) method compares two paths to determine if they locate the same file on the file system. For example:
+CODE:
+Path p1 = ...;
+Path p2 = ...;
+
+if (Files.isSameFile(p1, p2)) {
+    // Logic when the paths locate the same file
+}
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

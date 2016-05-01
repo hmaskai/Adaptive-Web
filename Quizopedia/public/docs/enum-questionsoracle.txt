@@ -1,0 +1,9 @@
+https://docs.oracle.com/javase/tutorial/java/javaOO/QandE/enum-questions.html
+Questions and Exercises: Enum Types
+Rewrite the class Card from the exercise in Questions and Exercises: Classes so that it represents the rank and suit of a card with enum types.
+Rewrite the Deck class.
+Check your answers.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

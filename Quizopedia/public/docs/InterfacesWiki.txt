@@ -1,0 +1,23 @@
+https://en.wikibooks.org/wiki/Java_Programming/Interfaces
+Interfaces
+
+An interface is an abstraction of class with no implementation details. For example, java.lang.Comparable is a standard interface in Java. You cannot instantiate an interface. An interface is not a class but it is written the same way. The first difference is that you do not use the class keyword but the interface keyword to define it. Then, there are fields and methods you cannot define here:
+An interface represents a contract:
+You can see that the method1() method is abstract (unimplemented). To use an interface, you have to define a class that implements it, using the implements keyword:
+A class can implement several interface, separated by a comma. Java interfaces behave much like the concept of the Objective-C protocol. It is recommended to name an interface <verb>able, to mean the type of action this interface would enable on a class. However, it is not recommended to start the name of an interface by I as in C++. It is useless. Your IDE will help you instead.
+Interest
+If you have objects from different classes that do not have a common superclass, you can't call the same method in those classes, even if the two classes implement a method with the same signature.
+The solution is to write an interface that defines the method that should be implemented in the two classes as the SimpleInterface in the Code listing 4.14 and then the both classes can implement the interface as in the Code listing 4.15.
+You can also implement this using a common super class but a class can only inherit from one super class whereas it can implement several interfaces.
+Java does not support full orthogonal multiple inheritance (i.e. Java does not allow you to create a subclass from two classes). Multiple inheritance in C++ has complicated rules to disambiguate fields and methods inherited from multiple superclasses and types that are inherited multiple times. By separating interface from implementation, interfaces offer much of the benefit of multiple inheritance with less complexity and ambiguity. The price of no multiple inheritance is some code redundancy; since interfaces only define the signature of a class but cannot contain any implementation, every class inheriting an interface must provide the implementation of the defined methods, unlike in pure multiple inheritance, where the implementation is also inherited. The major benefit of that is that all Java objects can have a common ancestor (a class called Object).
+When overriding methods defined in interfaces there are several rules to be followed:
+Extending interfaces
+An interface can extend several interfaces, similar to the way that a class can extend another class, using the extends keyword:
+This way, a class implementing the InterfaceAB interface has to implement the methodA(), the methodB() and the otherMethod() methods:
+Doing so, a ClassAB object can be casted into InterfaceA, InterfaceB and InterfaceAB.
+Question 4.2: Consider the following interfaces.
+List all the methods that an implementing class of Movable should implement.
+Question 4.3: Consider the following classes and the following code.
+Change the implementation of the code in order to be able to uncomment the commented line without compile error.
+You have to create an interface that defines the method printLog(String) and makes ConsoleLogger and FileLogger implement it:
+Now your code has to cast the objects to the Logger type and then you can uncomment the code.

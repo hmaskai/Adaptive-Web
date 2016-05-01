@@ -1,0 +1,16 @@
+https://en.wikibooks.org/wiki/Java_Programming/Database_Programming
+Java Programming/Database Programming
+Java uses JDBC, an API that defines how a client may access a database. Its drivers may be installed first. [1][2]
+Connecting to Microsoft Access databases
+The following is used to open an ODBC connection to an Access database. Note that the username (and password, if applicable) are given in the DSN rather than the getConnection call. This is a MS Windows-only example, due to the requirement for the Microsoft Access Driver.
+Connecting to MySQL
+Connecting to Oracle Database
+This script returns the database size:
+Connecting to PostgreSQL
+Know errors
+package oracle.jdbc does not exist
+If you have Oracle Database on your PC, just add to the classpath its following files[3]:
+Otherwise, ojdbc7.jar can be downloaded from http://www.oracle.com/technetwork/database/features/jdbc/jdbc-drivers-12c-download-1958347.html, and add it to the compilation. Eg:
+ORA-28009: connection as SYS should be as SYSDBA or SYSOPER
+Just add " as sysdba" after your Oracle account name, eg:
+References

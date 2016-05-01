@@ -72,12 +72,10 @@ include_once("../includes/config.php");
 include_once("../includes/database.php");
 if($session->is_logged_in()){
 	header("Location: homepage.php");
-	echo "set";
+	
 	exit();
 }
-else{
-	echo "unset";
-}
+
 if(!isset($_SESSION["user_id"])&&!isset($_POST["username"])){
 	?>
 	<div class="container">

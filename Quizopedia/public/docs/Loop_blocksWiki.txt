@@ -1,0 +1,62 @@
+https://en.wikibooks.org/wiki/Java_Programming/Loop_blocks
+Loop blocks
+
+Loops are a handy tool that enables programmers to do repetitive tasks with minimal effort. Say we want a program that can count from 1 to 10, we could write the following program.
+The task will be completed just fine, the numbers 1 to 10 will be printed in the output, but there are a few problems with this solution:
+Using loops we can solve all these problems. Once you get you head around them they will be invaluable to solving many problems in programming.
+Open up your editing program and create a new file saved as Loop.java. Now type or copy the following code:
+If we run the program, the same result is produced, but looking at the code, we immediately see the advantages of loops. Instead of executing 10 different lines of code, line 5 executes ten times. 10 lines of code have been reduced to just 4. Furthermore, we may change the number 10 to any number we like. Try it yourself, replace the 10 with your own number.
+While
+while loops are the simplest form of loop. The while loop repeats a block of code while the specified condition is true. Here is the structure of a while loop:
+}
+The loop's condition is checked before each iteration of the loop. If the condition is false at the start of the loop, the loop will not be executed at all. The code section 3.28 sets in squareHigherThan200 the smallest integer whose square exceeds 200.
+Do... while
+The do-while loop is functionally similar to the while loop, except the condition is evaluated AFTER the statement executes It is useful when we try to find a data that does the job by randomly browsing an amount of data.
+} while (boolean expression1);
+For
+The for loop is a specialized while loop whose syntax is designed for easy iteration through a sequence of numbers. It consists of the keyword for followed by three extra statements enclosed in parentheses. The first statement is the variable declaration statement, which allows you to declare one or more integer variables. The second is the condition, which is checked the same way as the while loop. Last is the iteration statement, which is used to increment or decrement variables, though any statement is allowed.
+This is the structure of a for loop:
+}
+To clarify how a for loop is used, here is an example:
+The for loop is like a template version of the while loop. The alternative code using a while loop would be as follows:
+The code section 3.31 shows how to iterate with the for loop using multiple variables and the code section 3.32 shows how any of the parameters of a for loop can be skipped. Skip them all, and you have an infinitely repeating loop.
+For-each
+Arrays haven't been covered yet, but you'll want to know how to use the enhanced for loop, called the for-each loop. The for-each loop automatically iterates through a list or array and assigns the value of each index to a variable.
+To understand the structure of a for-each loop, look at the following example:
+The example iterates through an array of words and prints them out like a sentence. What the loop does is iterate through sentence and assign the value of each index to word, then execute the code block.
+Here is the general contract of the for-each loop:
+}
+Make sure that the type of the array or list is assignable to the declared variable, or you will get a compilation error. Notice that the loop automatically exits after the last item in the collection has been examined in the statement block.
+Although the enhanced for loop can make code much clearer, it can't be used in some common situations.
+Break and continue keywords
+The break keyword exits a flow control loop, such as a for loop. It basically breaks the loop.
+In the code section 3.34, the loop would print out all the numbers from 1 to 10, but we have a check for when i equals 5. When the loop reaches its fifth iteration, it will be cut short by the break statement, at which point it will exit the loop.
+The continue keyword jumps straight to the next iteration of a loop and evaluates the boolean expression controlling the loop. The code section 3.35 is an example of the continue statement in action:
+As the break and continue statements reduce the readability of the code, it is recommended to reduce their use or replace them with the use of if and while blocks. Some IDE refactoring operations will fail because of such statements.
+Question 3.2: Consider the following code:
+What will be printed in the standard output?
+The snippet is searching the 5th prime number, that is to say: 11. It iterates on each positive integer from 2 (2, 3, 4, 5, 6, 7, 8, 9, 10, 11...), among them, it counts the prime numbers (2, 3, 5, 7, 11) and it stops at the 5th one.
+So the snippet first iterates on each positive integer from 2 using the while loop:
+For each iteration, the current number is either a prime number or not. If it is a prime number, the code at the left will be executed. If it is not a prime number, the code at the right will be executed.
+The prime numbers are counted using currentItems. When currentItems is equal to numberOfItems (5), the program go out of the while loop. currentCandidate contains the last number, that is to say the 5th prime number:
+Labels
+Labels can be used to give a name to a loop. The reason to do this is so we can break out of or continue with upper-level loops from a nested loop.
+Here is how to label a loop:
+To break out of or continue with a loop, use the break or continue keyword followed by the name of the loop.
+For example:
+You needn't worry if you don't understand all the code, but look at how the label is used to break out of the outer loop from the inner loop. However, as such a code is hard to read and maintain, it is highly recommended not to use labels.
+Try... catch blocks
+The try-catch blocks are used to catch any exceptions or other throwable objects within the code.
+Here's what try-catch blocks looks like:
+} catch (exception1) {
+}
+The code listing 3.6 tries to print all the arguments that have been passed to the program. However, if there not enough arguments, it will throw an exception.
+In addition to the try and catch blocks, a finally block may be present. The finally block is always executed, even if an exception is thrown. It may appear with or without a catch block, but always with a try block.
+Here is what a finally block looks like:
+} catch (exception1) {
+} finally {
+}
+Examples
+The code listing 3.7 recieves a number as parameter and print its binary representation.
+The code listing 3.8 is a simulation of playing a game called Lucky Sevens. It is a dice game where the player rolls two dice. If the numbers on the dice add up to seven, he wins $4. If they do not, he loses $1. The game shows how to use control flow in a program as well as the fruitlessness of gambling.
+

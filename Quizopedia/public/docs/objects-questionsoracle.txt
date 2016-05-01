@@ -1,0 +1,33 @@
+https://docs.oracle.com/javase/tutorial/java/javaOO/QandE/objects-questions.html
+Questions and Exercises: Objects
+What's wrong with the following program?
+CODE:
+public class SomethingIsWrong {
+    public static void main(String[] args) {
+        Rectangle myRect;
+        myRect.width = 40;
+        myRect.height = 50;
+        System.out.println("myRect's area is " + myRect.area());
+    }
+}
+The following code creates one array and one string object. How many references to those objects exist after the code executes? Is either object eligible for garbage collection?
+CODE:
+...
+String[] students = new String[10];
+String studentName = "Peter Parker";
+students[0] = studentName;
+studentName = null;
+...
+How does a program destroy an object that it creates?
+Fix the program called SomethingIsWrong shown in Question 1.
+Given the following class, called NumberHolder, write some code that creates an instance of the class, initializes its two member variables, and then displays the value of each member variable.
+CODE:
+public class NumberHolder {
+    public int anInt;
+    public float aFloat;
+}
+Check your answers.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

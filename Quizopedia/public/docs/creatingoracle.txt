@@ -1,0 +1,14 @@
+https://docs.oracle.com/javase/tutorial/essential/exceptions/creating.html
+Creating Exception Classes
+When faced with choosing the type of exception to throw, you can either use one written by someone else ? the Java platform provides a lot of exception classes you can use ? or you can write one of your own. You should write your own exception classes if you answer yes to any of the following questions; otherwise, you can probably use someone else's.
+Suppose you are writing a linked list class. The class supports the following methods, among others:
+The linked list class can throw multiple exceptions, and it would be convenient to be able to catch all exceptions thrown by the linked list with one exception handler. Also, if you plan to distribute your linked list in a package, all related code should be packaged together. Thus, the linked list should provide its own set of exception classes.
+The next figure illustrates one possible class hierarchy for the exceptions thrown by the linked list.
+
+Example exception class hierarchy.
+Any Exception subclass can be used as the parent class of LinkedListException. However, a quick perusal of those subclasses shows that they are inappropriate because they are either too specialized or completely unrelated to LinkedListException. Therefore, the parent class of LinkedListException should be Exception.
+Most applets and applications you write will throw objects that are Exceptions. Errors are normally used for serious, hard errors in the system, such as those that prevent the JVM from running.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

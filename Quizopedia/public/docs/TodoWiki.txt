@@ -1,0 +1,13 @@
+https://en.wikibooks.org/wiki/Java_Programming/Todo
+Todo
+
+In accordance with some of the other books on Wikibooks, this page is for suggesting and tracking ongoing maintenance for the book Java Programming. If you want to add another suggestion to the list below that isn't already there, go ahead. If you have a problem with one of the suggestions or want to remove one, please discuss the reason why on the talk page first.
+
+
+Pages Needing Cleanup
+Please add pages that require cleanup and state what is needed here.
+Suggestions
+New Layout
+I'm going to have a crack at suggesting a possible outline for the book.
+Steady Progression
+This book is more of a reference than a learning book. It needs to be easier for newbies starting out how to program. Then have dedicated more advance topics later.--Mattylaws (discuss • contribs) 12:37, 19 August 2012 (UTC)

@@ -1,0 +1,11 @@
+https://docs.oracle.com/javase/tutorial/essential/end.html
+Essential Classes: End of Trail
+You have reached the end of the "Essential Classes" trail.
+If you have comments or suggestions about this trail, use our feedback page to tell us about it.
+Creating a GUI With JFC/Swing: Once you know how to create applications or applets, follow this trail to learn how to create their user interfaces.
+Collections: Using the classes and interfaces in the collections framework you can group objects together into a single object.
+Internationalization: Essential if you want to create a program that can be used by people all over the world. Furthermore, you can use the information about formatting dates, numbers, and strings in any program.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

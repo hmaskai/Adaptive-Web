@@ -1,0 +1,131 @@
+https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html
+Restrictions on Generics
+To use Java generics effectively, you must consider the following restrictions:
+Consider the following parameterized type:
+CODE:
+class Pair<K, V> {
+
+    private K key;
+    private V value;
+
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    // ...
+}
+When creating a Pair object, you cannot substitute a primitive type for the type parameter K or V:
+CODE:
+Pair<int, char> p = new Pair<>(8, 'a');  // compile-time error
+You can substitute only non-primitive types for the type parameters K and V:
+CODE:
+Pair<Integer, Character> p = new Pair<>(8, 'a');
+Note that the Java compiler autoboxes 8 to Integer.valueOf(8) and 'a' to Character('a'):
+CODE:
+Pair<Integer, Character> p = new Pair<>(Integer.valueOf(8), new Character('a'));
+For more information on autoboxing, see Autoboxing and Unboxing in the Numbers and Strings lesson.
+You cannot create an instance of a type parameter. For example, the following code causes a compile-time error:
+CODE:
+public static <E> void append(List<E> list) {
+    E elem = new E();  // compile-time error
+    list.add(elem);
+}
+As a workaround, you can create an object of a type parameter through reflection:
+CODE:
+public static <E> void append(List<E> list, Class<E> cls) throws Exception {
+    E elem = cls.newInstance();   // OK
+    list.add(elem);
+}
+You can invoke the append method as follows:
+CODE:
+List<String> ls = new ArrayList<>();
+append(ls, String.class);
+A class's static field is a class-level variable shared by all non-static objects of the class. Hence, static fields of type parameters are not allowed. Consider the following class:
+CODE:
+public class MobileDevice<T> {
+    private static T os;
+
+    // ...
+}
+If static fields of type parameters were allowed, then the following code would be confused:
+CODE:
+MobileDevice<Smartphone> phone = new MobileDevice<>();
+MobileDevice<Pager> pager = new MobileDevice<>();
+MobileDevice<TabletPC> pc = new MobileDevice<>();
+Because the static field os is shared by phone, pager, and pc, what is the actual type of os? It cannot be Smartphone, Pager, and TabletPC at the same time. You cannot, therefore, create static fields of type parameters.
+Because the Java compiler erases all type parameters in generic code, you cannot verify which parameterized type for a generic type is being used at runtime:
+CODE:
+public static <E> void rtti(List<E> list) {
+    if (list instanceof ArrayList<Integer>) {  // compile-time error
+        // ...
+    }
+}
+The set of parameterized types passed to the rtti method is:
+CODE:
+S = { ArrayList<Integer>, ArrayList<String> LinkedList<Character>, ... }
+The runtime does not keep track of type parameters, so it cannot tell the difference between an ArrayList<Integer> and an ArrayList<String>. The most you can do is to use an unbounded wildcard to verify that the list is an ArrayList:
+CODE:
+public static void rtti(List<?> list) {
+    if (list instanceof ArrayList<?>) {  // OK; instanceof requires a reifiable type
+        // ...
+    }
+}
+Typically, you cannot cast to a parameterized type unless it is parameterized by unbounded wildcards. For example:
+CODE:
+List<Integer> li = new ArrayList<>();
+List<Number>  ln = (List<Number>) li;  // compile-time error
+However, in some cases the compiler knows that a type parameter is always valid and allows the cast. For example:
+CODE:
+List<String> l1 = ...;
+ArrayList<String> l2 = (ArrayList<String>)l1;  // OK
+You cannot create arrays of parameterized types. For example, the following code does not compile:
+CODE:
+List<Integer>[] arrayOfLists = new List<Integer>[2];  // compile-time error
+The following code illustrates what happens when different types are inserted into an array:
+CODE:
+Object[] strings = new String[2];
+strings[0] = "hi";   // OK
+strings[1] = 100;    // An ArrayStoreException is thrown.
+If you try the same thing with a generic list, there would be a problem:
+CODE:
+Object[] stringLists = new List<String>[];  // compiler error, but pretend it's allowed
+stringLists[0] = new ArrayList<String>();   // OK
+stringLists[1] = new ArrayList<Integer>();  // An ArrayStoreException should be thrown,
+                                            // but the runtime can't detect it.
+If arrays of parameterized lists were allowed, the previous code would fail to throw the desired ArrayStoreException.
+A generic class cannot extend the Throwable class directly or indirectly. For example, the following classes will not compile:
+CODE:
+// Extends Throwable indirectly
+class MathException<T> extends Exception { /* ... */ }    // compile-time error
+
+// Extends Throwable directly
+class QueueFullException<T> extends Throwable { /* ... */ // compile-time error
+A method cannot catch an instance of a type parameter:
+CODE:
+public static <T extends Exception, J> void execute(List<J> jobs) {
+    try {
+        for (J job : jobs)
+            // ...
+    } catch (T e) {   // compile-time error
+        // ...
+    }
+}
+You can, however, use a type parameter in a throws clause:
+CODE:
+class Parser<T extends Exception> {
+    public void parse(File file) throws T {     // OK
+        // ...
+    }
+}
+A class cannot have two overloaded methods that will have the same signature after type erasure.
+CODE:
+public class Example {
+    public void print(Set<String> strSet) { }
+    public void print(Set<Integer> intSet) { }
+}
+The overloads would all share the same classfile representation and will generate a compile-time error.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

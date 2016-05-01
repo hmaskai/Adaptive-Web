@@ -154,7 +154,7 @@
 						?>
 						<h2 class="question"><span class="glyphicon glyphicon-thumbs-up" ></span> You have finished today's challenge</h2>
 						<?php echo "<h2 class='answered_question'>Quiz #".$GLOBALS['q']["question_id"]."<br/>".$GLOBALS['q']["question_text"]."</h2>";?>
-						<div style="margin-left:45%">
+						<div style="margin-left:33%">
 							
 							<div class="radionew">
 							<label for="radio1" ><?php echo $GLOBALS["q"]["option_1"];?></label>
@@ -172,8 +172,30 @@
 							<label for="radio4"><?php echo $GLOBALS["q"]["option_4"];?></label>
 							</div>
 							
-						</div>			
-					<?php		
+						</div>	
+						
+						<div style="clear:left;margin-top:15%;text-align:center;">
+						
+						<h3 style="text-align:center;">Recommendations for this question:</h3>
+					<?php					 
+					 $q = "select tags from questions where question_id=".$GLOBALS['q']["question_id"];
+					 $tags = $database->fetch_array($database->query($q));
+					 
+					 //print_r($tags['tags']);
+					 
+					 
+					 $output = shell_exec("java -jar LuceneFinal.jar 1 ".$tags['tags']);
+					 $links = explode(",",$output);
+					  //echo sizeof($links);
+					  //$links = array explode ( ">" , string $output[, int $limit = PHP_INT_MAX ]);
+					 $i=0;
+					 while($i < sizeof($links)){
+						 
+						 echo "<a href=".$links[$i].">".$links[$i]."</a><br/>";
+						 $i++;
+					 }
+					 echo "</div>";
+					 
 					}
 					?>
 				</div>	  
@@ -204,7 +226,7 @@
 		$total_questions = $database->fetch_array($database->query($q));
 		$_GLOBAL["total questions"] = $total_questions[0];
 		
-		$q="select count(q.question_id) from questions q LEFT JOIN student_questions s ON q.question_id=s.question_id where q.correct_answer=s.answer and type='Q' and s.user_id=".$session->user_id;
+		$q="select count(q.question_id) from questions q LEFT JOIN student_questions s ON q.question_id=s.question_id where q.correct_answer=s.answer and q.type='Q' and s.user_id=".$session->user_id;
 		$correct_answers = $database->fetch_array($database->query($q));
 		$_GLOBAL["correct answers"] = $correct_answers[0];
 		?>
@@ -220,7 +242,7 @@
 		config1.textVertPosition = 0.2;
 		config1.waveAnimateTime = 1000;
 		config1.displayPercent = false;
-		config1.maxValue = 30;
+		config1.maxValue = 60;
 		loadLiquidFillGauge("fillgauge1", <?php echo $_GLOBAL["total questions"]?>, config1);
 		var config2 = liquidFillGaugeDefaultSettings();
 		config2.circleColor = "#178BCA";
@@ -231,7 +253,7 @@
 		config2.textVertPosition = 0.2;
 		config2.waveAnimateTime = 1000;
 		config2.displayPercent = false;
-		config2.maxValue = 30;
+		config2.maxValue = 60;
 		loadLiquidFillGauge("fillgauge2", <?php echo $_GLOBAL["correct answers"]?>, config2);
 		var config3 = liquidFillGaugeDefaultSettings();
 		config3.circleColor = "#ff4d4d";
@@ -266,6 +288,7 @@
     <div id="menu2" class="tab-pane fade">
       
       <br/>
+	  <br/>
 	   <?php
 		 include_once("../includes/functions.php");
 		 $_GLOBAL['correct_incorrect']=$functions->csv_correct_incorrect_unattempted();
@@ -289,7 +312,7 @@
 	 <div>
 	 <div id="topPerformers" style="font-size:20px;width:40%;float:left;">
 	 
-	 <?php  $q= "select l.user_id, CONCAT(l.fname, ' ', l.lname) as name, round(count(*)*100/(select COUNT(*) from questions),2) accuracy from login l left outer JOIN student_questions s on l.user_id = s.user_id left outer join questions q on s.question_id = q.question_id and s.answer = q.correct_answer and q.type = 'Q' GROUP BY s.user_id, l.fname, l.lname ORDER BY accuracy DESC limit 10";
+	 <?php  $q= "select l.user_id, CONCAT(l.fname, ' ', l.lname) as name, round( count(s.question_id) * 100 / (select count(question_id) from questions where type='Q'), 2) accuracy from login l left outer JOIN student_questions s on l.user_id = s.user_id left outer join questions q on s.question_id = q.question_id where s.answer = q.correct_answer and q.type = 'Q' GROUP BY s.user_id, l.fname, l.lname ORDER BY accuracy DESC limit 10";
 	 
 	 $toppers = $database->query($q);
 	  echo "<table class='table'>";
@@ -317,6 +340,10 @@
 	 </div>
 	 </div>
 	 <?php include_once("../includes/functions.php");?>
+	 <br/>
+	 <div style="text-align:center;clear:left;">	 
+	<text style="font-size:20px;"><b>Class Performance(Topic-wise)</b></text>
+	</div>
 	 <div id="dashboard" style="clear:left; float:left"></div>
 	 <script>
 	 dashboard('#dashboard',<?php echo $functions->student_accuracy();?>);
@@ -331,7 +358,8 @@
 	
     <div id="menu3" class="tab-pane fade">
       
-      <p>Click on individual rows below to view the details.</p>
+      <br/>
+	  <br/>
 	  <table id="table" class="table table-hover">
 		<thead>
 		  <tr>
@@ -379,8 +407,29 @@
 	
 	
 	<div id="menu4" class="tab-pane fade">
+      <h3 style="clear:left;">We recommend you to read these:</h3>
+	  <p>These recommendations are based on the topics that you need to pay the most to.</p>
+	
+	 <?php 
+	 
+	 $tags = $functions->recommend_topics($_SESSION['user_id']);
+	 
+	 //print_r($tags);
+	 
+	 
+	 $output = shell_exec("java -jar LuceneFinal.jar 1 ".$tags);
+	 $links = explode(",",$output);
+	  //echo sizeof($links);
+	  //$links = array explode ( ">" , string $output[, int $limit = PHP_INT_MAX ]);
+	 $i=0;
+	 while($i < sizeof($links)){
+		 
+		 echo ($i+1).". <a href=".$links[$i].">".$links[$i]."</a><br/>";
+		 $i++;
+	 }
+	 
+	 ?>
       
-      <p>Recommendations based on your strengths and weaknesses</p>
 	  
     </div>
   </div>

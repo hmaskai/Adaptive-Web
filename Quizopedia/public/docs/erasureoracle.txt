@@ -1,0 +1,8 @@
+https://docs.oracle.com/javase/tutorial/java/generics/erasure.html
+Type Erasure
+Generics were introduced to the Java language to provide tighter type checks at compile time and to support generic programming. To implement generics, the Java compiler applies type erasure to:
+Type erasure ensures that no new classes are created for parameterized types; consequently, generics incur no runtime overhead.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

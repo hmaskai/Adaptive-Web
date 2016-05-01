@@ -1,0 +1,22 @@
+https://docs.oracle.com/javase/tutorial/essential/io/legacy.html
+Legacy File I/O Code
+Prior to the Java SE 7 release, the java.io.File class was the mechanism used for file I/O, but it had several drawbacks.
+Perhaps you have legacy code that uses java.io.File and would like to take advantage of the java.nio.file.Path functionality with minimal impact to your code.
+The java.io.File class provides the toPath method, which converts an old style File instance to a java.nio.file.Path instance, as follows:
+CODE:
+Path input = file.toPath();
+You can then take advantage of the rich feature set available to the Path class.
+For example, assume you had some code that deleted a file:
+CODE:
+file.delete();
+You could modify this code to use the Files.delete method, as follows:
+CODE:
+Path fp = file.toPath();
+Files.delete(fp);
+Conversely, the Path.toFile method constructs a java.io.File object for a Path object.
+Because the Java implementation of file I/O has been completely re-architected in the Java SE 7 release, you cannot swap one method for another method. If you want to use the rich functionality offered by the java.nio.file package, your easiest solution is to use the File.toPath method as suggested in the previous section. However, if you do not want to use that approach or it is not sufficient for your needs, you must rewrite your file I/O code.
+There is no one-to-one correspondence between the two APIs, but the following table gives you a general idea of what functionality in the java.io.File API maps to in the java.nio.file API and tells you where you can obtain more information.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

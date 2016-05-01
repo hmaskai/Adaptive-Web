@@ -1,0 +1,54 @@
+https://docs.oracle.com/javase/tutorial/essential/io/links.html
+Links, Symbolic or Otherwise
+As mentioned previously, the java.nio.file package, and the Path class in particular, is "link aware." Every Path method either detects what to do when a symbolic link is encountered, or it provides an option enabling you to configure the behavior when a symbolic link is encountered.
+The discussion so far has been about symbolic or soft links, but some file systems also support hard links. Hard links are more restrictive than symbolic links, as follows:
+Because of these restrictions, hard links are not used as often as symbolic links, but the Path methods work seamlessly with hard links.
+Several methods deal specifically with links and are covered in the following sections:
+If your file system supports it, you can create a symbolic link by using the createSymbolicLink(Path, Path, FileAttribute<?>) method. The second Path argument represents the target file or directory and might or might not exist. The following code snippet creates a symbolic link with default permissions:
+CODE:
+Path newLink = ...;
+Path target = ...;
+try {
+    Files.createSymbolicLink(newLink, target);
+} catch (IOException x) {
+    System.err.println(x);
+} catch (UnsupportedOperationException x) {
+    // Some file systems do not support symbolic links.
+    System.err.println(x);
+}
+The FileAttributes vararg enables you to specify initial file attributes that are set atomically when the link is created. However, this argument is intended for future use and is not currently implemented.
+You can create a hard (or regular) link to an existing file by using the createLink(Path, Path) method. The second Path argument locates the existing file, and it must exist or a NoSuchFileException is thrown. The following code snippet shows how to create a link:
+CODE:
+Path newLink = ...;
+Path existingFile = ...;
+try {
+    Files.createLink(newLink, existingFile);
+} catch (IOException x) {
+    System.err.println(x);
+} catch (UnsupportedOperationException x) {
+    // Some file systems do not
+    // support adding an existing
+    // file to a directory.
+    System.err.println(x);
+}
+To determine whether a Path instance is a symbolic link, you can use the isSymbolicLink(Path) method. The following code snippet shows how:
+CODE:
+Path file = ...;
+boolean isSymbolicLink =
+    Files.isSymbolicLink(file);
+For more information, see Managing Metadata.
+You can obtain the target of a symbolic link by using the readSymbolicLink(Path) method, as follows:
+CODE:
+Path link = ...;
+try {
+    System.out.format("Target of link" +
+        " '%s' is '%s'%n", link,
+        Files.readSymbolicLink(link));
+} catch (IOException x) {
+    System.err.println(x);
+}
+If the Path is not a symbolic link, this method throws a NotLinkException.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

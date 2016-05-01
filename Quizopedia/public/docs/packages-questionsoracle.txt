@@ -1,0 +1,10 @@
+https://docs.oracle.com/javase/tutorial/java/package/QandE/packages-questions.html
+Questions and Exercises: Creating and Using Packages
+Assume you have written some classes. Belatedly, you decide they should be split into three packages, as listed in the following table. Furthermore, assume the classes are currently in the default package (they have no package statements).
+ 
+Download the source files as listed here.
+ 
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.

@@ -1,0 +1,16 @@
+https://en.wikibooks.org/wiki/Java_Programming/Execution
+Execution
+
+There are various ways in which Java code can be executed. A complex Java application usually uses third party APIs or services. In this section we list the most popular ways a piece of Java code may be packed together and/or executed.
+JSE code execution
+Java language first edition came out in the client-server era. Thick clients were developed with rich GUI interfaces. Java first edition, JSE (Java Standard Edition) had/has the following in its belt:
+With JSE the following Java code executions are possible:
+J2EE code execution
+As the focus was shifting from reaching GUI clients to thin client applications, with Java version 2, Sun introduced J2EE (Java 2 Extended Edition). J2EE added :
+With J2EE the following Java component executions are possible:
+
+Jini
+After J2EE Sun had a vision about the next step of network computing. That is Jini. The main idea is that in a network environment, there would be many independent services and consumers. Jini would allow these services/consumers to interact dynamically with each other in a robust way. The basic features of Jini are:
+A minimal Jini network environment consists of:
+Jini is not widely used at the current writing (2006). There are two possible reasons for it. One is Jini a bit complicated to understand and to set it up. The other reason is that Microsoft pulled out from Java, which caused the industry to turn to the use of proprietary solutions.
+

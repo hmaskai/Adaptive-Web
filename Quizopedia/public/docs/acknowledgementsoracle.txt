@@ -1,0 +1,8 @@
+https://docs.oracle.com/javase/tutorial/extra/generics/acknowledgements.html
+Acknowledgements
+Erik Ernst, Christian Plesner Hansen, Jeff Norton, Mads Torgersen, Peter von der Ahe and Philip Wadler contributed material to this trail .
+Thanks to David Biesack, Bruce Chapman, David Flanagan, Neal Gafter, Orjan Petersson, Scott Seligman, Yoshiki Shibata and Kresten Krab Thorup for valuable feedback on earlier versions of this trail. Apologies to anyone I've forgotten.
+Your use of this page and all the material on pages under "The Java Tutorials" banner is subject to these legal notices.
+Copyright © 1995, 2015 Oracle and/or its affiliates. All rights reserved.
+Problems with the examples? Try Compiling and Running the Examples: FAQs.
+Complaints? Compliments? Suggestions? Give us your feedback.
