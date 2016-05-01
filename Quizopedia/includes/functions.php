@@ -8,13 +8,13 @@ class MyFunction {
 	public function json_convert($q) {
 
 		//----- QUERY FOR TAGS OF ALL QUESTIONS [TO FIND THE COUNT OF ALL QUESTIONS]--------
-		//$q = "select lower(tags) as tags from questions";
+		//$q = "select lower(tags) as tags from questions where type = 'Q'";
 		
 		//----- QUERY FOR TAGS OF ALL CORRECT ANSWERS OF LOGGED IN STUDENT------------------
-		//$q = "select lower(q.tags) from questions q, student_questions sq where sq.user_id = $session->user_id and q.question_id = sq.question_id and sq.answer = q.correct_answer"
+		//$q = "select lower(q.tags) from questions q, student_questions sq where sq.user_id = $session->user_id and q.question_id = sq.question_id and sq.answer = q.correct_answer and q.type = 'Q'"
 		
 		//----- QUERY FOR TAGS OF ALL IN-CORRECT ANSWERS OF LOGGED IN STUDENT---------------
-		//$q = "select lower(q.tags) from questions q, student_questions sq where sq.user_id = $session->user_id and q.question_id = sq.question_id and sq.answer != q.correct_answer"
+		//$q = "select lower(q.tags) from questions q, student_questions sq where sq.user_id = $session->user_id and q.question_id = sq.question_id and sq.answer != q.correct_answer and q.type = 'Q'"
 		
 		//$result = $database->query($q);
 		$result = mysql_query($q);
@@ -233,16 +233,16 @@ class MyFunction {
 		error_reporting(0);
 		
 		//----- QUERY FOR TAGS OF ALL QUESTIONS [TO FIND THE COUNT OF ALL QUESTIONS]--------
-		//$q = "select lower(tags) as tags from questions";
+		//$q = "select lower(tags) as tags from questions where type = 'Q'";
 		
 		//----- QUERY FOR TAGS OF ALL CORRECT ANSWERS OF LOGGED IN STUDENT------------------
-		//$q = "select lower(q.tags) from questions q, student_questions sq where sq.user_id = $session->user_id and q.question_id = sq.question_id and sq.answer = q.correct_answer"
+		//$q = "select lower(q.tags) from questions q, student_questions sq where sq.user_id = $session->user_id and q.question_id = sq.question_id and sq.answer = q.correct_answer and q.type = 'Q'"
 		
 		//----- QUERY FOR TAGS OF ALL IN-CORRECT ANSWERS OF LOGGED IN STUDENT---------------
-		//$q = "select lower(q.tags) from questions q, student_questions sq where sq.user_id = $session->user_id and q.question_id = sq.question_id and sq.answer != q.correct_answer"
+		//$q = "select lower(q.tags) from questions q, student_questions sq where sq.user_id = $session->user_id and q.question_id = sq.question_id and sq.answer != q.correct_answer and q.type = 'Q'"
 		
 		//$result = $database->query($q);
-		$result = mysql_query("select lower(tags) as tags from questions");
+		$result = mysql_query("select lower(tags) as tags from questions where type = 'Q'");
 		$r = mysql_fetch_array($result);
 
 		$str = "";
@@ -306,7 +306,7 @@ class MyFunction {
 		$final = '[';
 		
 		while($u = mysql_fetch_array($users)){
-			$user_correct = mysql_query("select lower(q.tags) tags from questions q, student_questions sq where sq.user_id = ".$u['user_id']." and q.question_id = sq.question_id and sq.answer = q.correct_answer");
+			$user_correct = mysql_query("select lower(q.tags) tags from questions q, student_questions sq where sq.user_id = ".$u['user_id']." and q.question_id = sq.question_id and sq.answer = q.correct_answer and q.type = 'Q'");
 			
 			$str = "";
 

@@ -247,7 +247,7 @@
 		</script>	  
 	   <?php
 		 include_once("../includes/functions.php");
-		 $_GLOBAL['sunBurstJson']=$functions->json_convert("select lower(tags) as tags from questions");
+		 $_GLOBAL['sunBurstJson']=$functions->json_convert("select lower(tags) as tags from questions where type = 'Q'");
 		 
 		 ?>
 		 
@@ -289,7 +289,7 @@
 	 <div>
 	 <div id="topPerformers" style="font-size:20px;width:40%;float:left;">
 	 
-	 <?php  $q= "select l.user_id, CONCAT(l.fname, ' ', l.lname) as name, round(count(*)*100/(select COUNT(*) from questions),2) accuracy from login l left outer JOIN student_questions s on l.user_id = s.user_id left outer join questions q on s.question_id = q.question_id and s.answer = q.correct_answer GROUP BY s.user_id, l.fname, l.lname ORDER BY accuracy DESC limit 10";
+	 <?php  $q= "select l.user_id, CONCAT(l.fname, ' ', l.lname) as name, round(count(*)*100/(select COUNT(*) from questions),2) accuracy from login l left outer JOIN student_questions s on l.user_id = s.user_id left outer join questions q on s.question_id = q.question_id and s.answer = q.correct_answer and q.type = 'Q' GROUP BY s.user_id, l.fname, l.lname ORDER BY accuracy DESC limit 10";
 	 
 	 $toppers = $database->query($q);
 	  echo "<table class='table'>";
