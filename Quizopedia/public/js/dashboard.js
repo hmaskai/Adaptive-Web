@@ -45,7 +45,7 @@ function dashboard(id, fData){
             .on("mouseout",mouseout);// mouseout is defined below.
             
         //Create the frequency labels above the rectangles.
-        bars.append("text").text(function(d){ return d3.format(",")(d[1])})
+        bars.append("text")
             .attr("x", function(d) { return x(d[0])+x.rangeBand()/2; })
             .attr("y", function(d) { return y(d[1])-5; })
             .attr("text-anchor", "middle");
@@ -160,8 +160,8 @@ function dashboard(id, fData){
             .text(function(d){ return d3.format(",")(d.freq);});
 
         // create the fourth column for each segment.
-        tr.append("td").attr("class",'legendPerc')
-            .text(function(d){ return getLegend(d,lD);});
+  //      tr.append("td").attr("class",'legendPerc')
+   //         .text(function(d){ return getLegend(d,lD);});
 
         // Utility function to be used to update the legend.
         leg.update = function(nD){
