@@ -73,12 +73,12 @@
 					
 					//if($num_rows != 0){
 					
-					
+					echo "<div  align='center' style='text-align:center;'>";
 					echo "<h2 class='answered_question'>Quiz #".$question["question_id"]."<br/>".$question["question_text"]."</h2>";
 					?>
 						
 					
-						<div style="margin-left:33%">
+						<div align="center" style="text-align:center;">
 							
 							<div class="radionew">
 							<a href="#">	
@@ -109,10 +109,10 @@
 							</div>
 							
 						</div>
-						
+						</div>
 					<!--?php }?-->
-					<div style="clear:left;margin-top:15%;text-align:center;">
-	<h3 style="clear:left;">Recommendations for this question:</h3>
+					<div class="recommendation" style="clear:left;margin-top:3%;background-color:#ffffff;word-wrap: break-word;border-radius:25px;border: 2px solid #DEDEDE;padding:20px;">
+	<h3 style="text-align:center;color:#337AB7;">Recommendations for this Question:</h3>
 	
 	
  <?php 
@@ -129,7 +129,7 @@
  $i=0;
  while($i < sizeof($links)){
 	 
-	 echo ($i+1).". <a href=".$links[$i].">".$links[$i]."</a><br/>";
+	 echo "<a style='font-size:140%;' href=".$links[$i].">".$links[$i]."</a><br/>";
 	 $i++;
  }
  

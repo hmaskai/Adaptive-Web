@@ -24,7 +24,13 @@ function dashboard(id, fData){
         // Add x-axis to the histogram svg.
         hGsvg.append("g").attr("class", "x axis")
             .attr("transform", "translate(0," + hGDim.h + ")")
-            .call(d3.svg.axis().scale(x).orient("bottom"));
+            .call(d3.svg.axis().scale(x).orient("bottom"))
+			.selectAll("text")
+			.style("text-anchor", "end")
+			.style("font-size","105%")
+			.attr("dx", "-.8em")
+			.attr("dy", "-.40em")
+			.attr("transform", "rotate(-45)" );
 
         // Create function for y-axis map.
         var y = d3.scale.linear().range([hGDim.h, 0])

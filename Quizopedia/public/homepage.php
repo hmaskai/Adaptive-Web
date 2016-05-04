@@ -155,9 +155,10 @@
 					else{
 						include_once("../includes/functions.php");
 						?>
+						<div  align="center" style="text-align:center;">
 						<h2 class="question"><span class="glyphicon glyphicon-thumbs-up" ></span> You have finished today's challenge</h2>
 						<?php echo "<h2 class='answered_question'>Quiz #".$GLOBALS['q']["question_id"]."<br/>".$GLOBALS['q']["question_text"]."</h2>";?>
-						<div style="margin-left:33%">
+						<div align="center" style="text-align:center;">
 							
 							<div class="radionew">
 							<a href="#">	
@@ -188,10 +189,11 @@
 							</div>
 							
 						</div>	
+						</div>
+						<div class="recommendation" style="clear:left;margin-top:3%;background-color:#ffffff;word-wrap: break-word;border-radius:25px;border: 2px solid #DEDEDE;padding:20px;">
 						
-						<div style="clear:left;margin-top:15%;text-align:center;">
+						<h3 style="text-align:center;color:#337AB7;">Recommendations for this Question:</h3>
 						
-						<h3 style="text-align:center;">Recommendations for this question:</h3>
 					<?php					 
 					 $q = "select tags from questions where question_id=".$GLOBALS['q']["question_id"];
 					 $tags = $database->fetch_array($database->query($q));
@@ -206,7 +208,7 @@
 					 $i=0;
 					 while($i < sizeof($links)){
 						 
-						 echo "<a href=".$links[$i].">".$links[$i]."</a><br/>";
+						 echo "<a style='font-size:140%;' href=".$links[$i].">".$links[$i]."</a><br/>";
 						 $i++;
 					 }
 					 echo "</div>";
@@ -440,7 +442,7 @@
 	
 	<div id="menu4" class="tab-pane fade">
       <h3 style="clear:left;">We recommend you to read these:</h3>
-	  <p>These recommendations are based on the topics that you need to pay the most to.</p>
+	  <h4>These recommendations are based on the topics that you need to pay the most to.</h4>
 	
 	 <?php 
 	 
@@ -456,7 +458,7 @@
 	 $i=0;
 	 while($i < sizeof($links)){
 		 
-		 echo ($i+1).". <a href=".$links[$i].">".$links[$i]."</a><br/>";
+		 echo "<a style='font-size:140%' href=".$links[$i].">". $links[$i]."</a><br/>";
 		 $i++;
 	 }
 	 
