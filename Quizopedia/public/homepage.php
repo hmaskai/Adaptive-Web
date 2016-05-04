@@ -343,13 +343,13 @@
 	 
 	 
 	 
-	 <div>
+	 <div >
 	 <div id="topPerformers" style="font-size:20px;width:20%;float:left;">
 	 
 	 <?php  $q= "select l.user_id, CONCAT(l.fname, ' ', l.lname) as name, round( count(s.question_id) * 100 / (select count(question_id) from questions where type='Q'), 2) accuracy from login l left outer JOIN student_questions s on l.user_id = s.user_id left outer join questions q on s.question_id = q.question_id where s.answer = q.correct_answer and q.type = 'Q' GROUP BY s.user_id, l.fname, l.lname ORDER BY accuracy DESC limit 10";
 	 
 	 $toppers = $database->query($q);
-	  echo "<table class='table'>";
+	  echo "<table class='table' >";
       echo "<thead>";
       echo "<tr>";
       echo "<th>Student</th>";
@@ -374,8 +374,8 @@
 	 </div>
 	 </div>
 	 <?php include_once("../includes/functions.php");?>
-	 <br/>
-	 <div style="text-align:center;clear:left;">	 
+	 <br/><br/>
+	 <div style="text-align:center;clear:left;"><br><br>	 
 	<text style="font-size:20px;"><b>Class Performance(Topic-wise)</b></text>
 	</div>
 	 <div id="dashboard" style="clear:left; float:left"></div>
