@@ -14,6 +14,7 @@
 	include_once("../includes/session.php");
 	include_once("../includes/config.php");
 	include_once("../includes/database.php");
+	include_once("../includes/functions.php");
 
 	if (!isset($session->user_id)) {
     header('Location: login.php');
@@ -63,10 +64,10 @@
 					//$GLOBALS['q'] = $question;
 
 					$q_validate = "select * from student_questions where user_id = '".$session->user_id."' and question_id = '".$question["question_id"]."' and answer<>-1";
-					$result_validate = $database->query($q_validate);
-					echo $result_validate["answer"];
-					//$validation = $database->fetch_array($result_validate);
-					$num_rows = $database->num_rows($result_validate);
+					$res = $database->query($q_validate);
+					//echo $result_validate["answer"];
+					$result_validate = mysql_fetch_array($res);
+					$num_rows = $database->num_rows($res);
 					//echo $num_rows;
 				
 					
@@ -75,23 +76,35 @@
 					
 					echo "<h2 class='answered_question'>Quiz #".$question["question_id"]."<br/>".$question["question_text"]."</h2>";
 					?>
+						
 					
-					
-						<div style="margin-left:45%">
+						<div style="margin-left:33%">
 							
 							<div class="radionew">
+							<a href="#">	
+	                         <span class="<?php echo $question['correct_answer'] == 1 ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove"?>" style="color:<?php echo $functions->mark_option($question['correct_answer'], $result_validate['answer'], 1)?>"></span>
+							 </a>
 							<label for="radio1" ><?php echo $question["option_1"];?></label>
 							</div>
 
 							<div class="radionew">
+							<a href="#">	
+	                         <span class="<?php echo $question['correct_answer'] == 2 ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove"?>" style="color:<?php echo $functions->mark_option($question['correct_answer'], $result_validate['answer'], 2)?>"></span>
+							 </a>
 							<label for="radio2"><?php echo $question["option_2"];?></label>
 							</div>
 
 							<div class="radionew">	
+							<a href="#">	
+	                         <span class="<?php echo $question['correct_answer'] == 3 ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove"?>" style="color:<?php echo $functions->mark_option($question['correct_answer'], $result_validate['answer'], 3)?>"></span>
+							 </a>
 							<label for="radio3"><?php echo $question["option_3"];?></label>
 							</div>
 
 							<div class="radionew">	
+							<a href="#">	
+	                         <span class="<?php echo $question['correct_answer'] == 4 ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove"?>" style="color:<?php echo $functions->mark_option($question['correct_answer'], $result_validate['answer'], 4)?>"></span>
+							 </a>
 							<label for="radio4"><?php echo $question["option_4"];?></label>
 							</div>
 							

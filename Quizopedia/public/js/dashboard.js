@@ -46,7 +46,7 @@ function dashboard(id, fData){
             
         //Create the frequency labels above the rectangles.
         bars.append("text")
-            .attr("x", function(d) { return x(d[0])+x.rangeBand()/2; })
+            .attr("x", function(d) { return x(d[0])+d3.round(x.rangeBand()/2, 1); })
             .attr("y", function(d) { return y(d[1])-5; })
             .attr("text-anchor", "middle");
         
@@ -125,7 +125,7 @@ function dashboard(id, fData){
         function mouseout(d){
             // call the update function of histogram with all data.
             hG.update(fData.map(function(v){
-                return [v.Name,v.total];}), barColor);
+                return [v.Name,d3.round(v.total,1)];}), barColor);
         }
         // Animating the pie-slice requiring a custom function which specifies
         // how the intermediate paths should be drawn.
@@ -184,11 +184,11 @@ function dashboard(id, fData){
     
     // calculate total frequency by segment for all state.
     var tF = ['Class','Object','Variables','Wrapper','String','Constants','Primitive_Data_Type','Boolean_Expressions','Arithmetic_Expressions','Two_Dimensional_Array','ArrayList','Arrays','Exceptions','Nested_Loops','For_Loop','Do_While_Loop','Switch_Statement','Decision_Types','Interface','Inheritance'].map(function(d){ 
-        return {type:d, freq: d3.sum(fData.map(function(t){ return t.freq[d];}))}; 
+        return {type:d, freq: d3.sum(fData.map(function(t){ return d3.round(t.freq[d],1);}))}; 
     });    
     
     // calculate total frequency by state for all segment.
-    var sF = fData.map(function(d){return [d.Name,d.total];});
+    var sF = fData.map(function(d){return [d.Name,d3.round(d.total,1)];});
 
     var hG = histoGram(sF), // create the histogram.
         pC = pieChart(tF), // create the pie-chart.

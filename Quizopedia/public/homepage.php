@@ -13,6 +13,7 @@
   <script src="js/sunBurst.js" language="JavaScript"></script>
   <script src="js/groupedBarChart.js" language="JavaScript"></script>
    <script src="js/dashboard.js" language="JavaScript"></script>
+   <script src="js/differenceChart.js" language="JavaScript"></script>
   <style>
         .liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
    </style>
@@ -112,7 +113,8 @@
 
 					$q_validate = "select * from student_questions where user_id = '".$session->user_id."' and question_id = '".$question["question_id"]."' and answer<>-1";
 					$result_validate = $database->query($q_validate);
-					echo $result_validate["answer"];
+					$GLOBALS['student_answer']=$database->fetch_array($database->query($q_validate));
+					//echo $result_validate["answer"];
 					//$validation = $database->fetch_array($result_validate);
 					$num_rows = $database->num_rows($result_validate);
 					//echo $num_rows;
@@ -151,24 +153,37 @@
 					<?php
 					}
 					else{
+						include_once("../includes/functions.php");
 						?>
 						<h2 class="question"><span class="glyphicon glyphicon-thumbs-up" ></span> You have finished today's challenge</h2>
 						<?php echo "<h2 class='answered_question'>Quiz #".$GLOBALS['q']["question_id"]."<br/>".$GLOBALS['q']["question_text"]."</h2>";?>
 						<div style="margin-left:33%">
 							
 							<div class="radionew">
+							<a href="#">	
+	                         <span class="<?php echo $GLOBALS['q']['correct_answer'] == 1 ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove"?>" style="color:<?php echo $functions->mark_option($GLOBALS['q']['correct_answer'], $GLOBALS['student_answer']['answer'], 1)?>"></span>
+							 </a>
 							<label for="radio1" ><?php echo $GLOBALS["q"]["option_1"];?></label>
 							</div>
 
 							<div class="radionew">
+							<a href="#">	
+	                         <span class="<?php echo $GLOBALS['q']['correct_answer'] == 2 ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove"?>" style="color:<?php echo $functions->mark_option($GLOBALS['q']['correct_answer'], $GLOBALS['student_answer']['answer'], 2)?>"></span>
+							 </a>
 							<label for="radio2"><?php echo $GLOBALS["q"]["option_2"];?></label>
 							</div>
 
 							<div class="radionew">	
+							<a href="#">	
+	                         <span class="<?php echo $GLOBALS['q']['correct_answer'] == 3 ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove"?>" style="color:<?php echo $functions->mark_option($GLOBALS['q']['correct_answer'], $GLOBALS['student_answer']['answer'], 3)?>"></span>
+							 </a>
 							<label for="radio3"><?php echo $GLOBALS["q"]["option_3"];?></label>
 							</div>
 
 							<div class="radionew">	
+							<a href="#">	
+	                         <span class="<?php echo $GLOBALS['q']['correct_answer'] == 4 ? "glyphicon glyphicon-ok" : "glyphicon glyphicon-remove"?>" style="color:<?php echo $functions->mark_option($GLOBALS['q']['correct_answer'], $GLOBALS['student_answer']['answer'], 4)?>"></span>
+							 </a>
 							<label for="radio4"><?php echo $GLOBALS["q"]["option_4"];?></label>
 							</div>
 							
@@ -270,19 +285,25 @@
 	   <?php
 		 include_once("../includes/functions.php");
 		 $_GLOBAL['sunBurstJson']=$functions->json_convert($_SESSION['user_id']);
-		 
+		 $_GLOBAL['differenceChart']=$functions->generate_line();
 		 ?>
 		 
 	<div>
 	
-	<h4 style="clear:left;margin-left:13%"><b>Topic-wise Performance</b></h4>
-	<div id="sunBurst" style="clear:left;"></div>
+	<div style="width:50%;text-align:center;float:left;">
+	<text style="font-size:20px;"><b>Topic-wise Performance</b></text>
+	<div id="sunBurst" style="clear:left;float:left;"></div>
+	</div>
+	<div style="width:50%;text-align:center;float:left;">
+	<text style="font-size:20px;"><b>Weekly Performance</b></text>
+	<div id="differenceChart" style="width:30%;"></div>
+	</div>
 	</div>
 	 <script>
 	 
 	 
 	 loadSunBurst(<?php echo $_GLOBAL['sunBurstJson'];?>);
-	 
+	 loadDifferenceChart(<?php echo $_GLOBAL['differenceChart'];?>);
 	 </script>
     </div>
     <div id="menu2" class="tab-pane fade">

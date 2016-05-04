@@ -46,9 +46,41 @@ function calc_freq($str){
 	return $frequency;
 }
 
+function weekly_accuracy($question_ids){
+	$total = 0;
+	$correct = 0;
+	
+	while($row = mysql_fetch_array($question_ids)){
+		$q = "select answer from student_questions where user_id = ".$_SESSION['user_id']." and question_id = ".$row['question_id']." LIMIT 1";
+		$result = mysql_query($q);
+		$result = mysql_fetch_array($result);
+		//echo $row['question_id']." ".$row['correct_answer']." ".$result['answer']."</br>";
+		if($result['answer'] == $row['correct_answer']){
+			$total++;
+			$correct++;
+		}
+		else{
+			$total++;
+		}
+	}
+	
+	if($total != 0)
+		return round($correct * 100 / $total, 2);
+	else
+		return 0;
+}
+
 class MyFunction {
 	//public $json_d;
-
+	public function mark_option($correct_answer, $student_answer, $option){
+		if($option == $correct_answer)
+			return "green";
+		if($option == $student_answer)
+			return "red";
+		else
+			return "white";
+	}
+		
 	public function json_convert($uid) {
 		//----- QUERY FOR TAGS OF ALL QUESTIONS [TO FIND THE COUNT OF ALL QUESTIONS]--------
 		$q = "select lower(tags) as tags from questions where type = 'Q'";
@@ -303,7 +335,7 @@ class MyFunction {
 		$json_d = $json_d.'      ]';
 		$json_d = $json_d.'    },';
 		$json_d = $json_d.'    {';
-		$json_d = $json_d.'      "name": "Arrays",';
+		$json_d = $json_d.'      "name": "Array Concepts",';
 		$json_d = $json_d.'  	 "size": '.$Arrays_concept.',';
 		$json_d = $json_d.'  	 "correct": '.$Arrays_concept_c.',';
 		$json_d = $json_d.'  	 "incorrect": '.($Arrays_concept - $Arrays_concept_c).',';
@@ -552,6 +584,39 @@ class MyFunction {
 		}
 		$output = substr($output, 0, -1);
 		return $output;
+	}
+	
+	public function generate_line(){
+		//$q = mysql_query("select CONCAT( fname, ' ', lname ) as name from login where user_id = ".$_SESSION['user_id']);
+		//$u = mysql_fetch_array($q);
+		$pre_avg = "select * from questions where type = 'P'";
+		$pre_avg = mysql_query($pre_avg);
+		$avg = weekly_accuracy($pre_avg);
+		
+		$str = "'Date,Current,Past\\n";
+		$max_week = "select max(WEEK(date)) maximum from questions";
+		$max = mysql_query($max_week);
+		$max = mysql_fetch_array($max);
+		$max = $max['maximum'];
+		$min_week = "select MIN(WEEK(date)) minimum from questions";
+		$min = mysql_query($min_week);
+		$min = mysql_fetch_array($min);
+		$min = $min['minimum'];
+		while($min != $max + 1){
+			$q = "select * from questions where week(date) = ".$min;
+			$query = mysql_query($q);
+			
+			$date = "SELECT STR_TO_DATE('2010".$min." Sunday', '%X%V %W') date";
+			$date = mysql_fetch_array(mysql_query($date));
+			//echo $date['date']."    ";
+			
+			$min++;
+			$acc = weekly_accuracy($query);
+			//echo "</br>";
+			$str .= $date['date'].",".$acc.",".$avg."\\n";
+		}
+		$str = substr($str, 0, -2);
+		return $str."'";
 	}
 }
 	$functions = new MyFunction();

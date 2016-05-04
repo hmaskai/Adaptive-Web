@@ -2,6 +2,7 @@
 <?php
     include_once("../../includes/config.php");
 	include_once("../../includes/database.php");
+	require_once("../../../Mail.php");
 	
     $question=$_POST['question'];
     $correctAns=$_POST['correctAns'];
@@ -65,10 +66,50 @@ if(!empty($_POST['InterfaceInheritance'])) {
 		}
 	
 	
-	/*for sending emails to the students
+	
+	$q = "Select username from login";
+	$students=$database->query($q);
+	$str="";
+	while($row = mysql_fetch_array($students)){
+			//mail("'".$row['username']."'","A new quiz for you",$msg,$headers);
+	$str.=$row['username'].",";
+	
+	}
+	$str = substr($str, 0, -1);
+	//$str.="'";
+	echo $str;
+
+/*for sending emails to the students*/
+		$from = '<quizopedia.asu@gmail.com>';
+		$to = $str;
+		$subject = 'A new quiz of the day is here!!';
+		$body = " A new challenge awaits you here: http://ec2-52-36-73-153.us-west-2.compute.amazonaws.com/Adaptive-Web/Quizopedia/public/login.php";
+
+		$headers = array(
+			'From' => $from,
+			'To' => $to,
+			'Subject' => $subject
+		);
+
+		$smtp = Mail::factory('smtp', array(
+				'host' => 'ssl://smtp.gmail.com',
+				'port' => '465',
+				'auth' => true,
+				'username' => 'quizopedia.asu@gmail.com',
+				'password' => 'quizoftheday'
+			));
+
+		$mail = $smtp->send($to, $headers, $body);
+
+		if (PEAR::isError($mail)) {
+			echo('<p>' . $mail->getMessage() . '</p>');
+		} else {
+			echo('<p>Message successfully sent!</p>');
+		}
 	
 	
 	
+	/*
 	$q1 = "Select username from login";
 	$students=$database->query($q1);
 	$headers = "From: harshilmaskai91@gmail.com" . "\r\n" .

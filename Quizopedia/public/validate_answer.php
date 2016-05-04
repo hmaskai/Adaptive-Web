@@ -8,6 +8,7 @@ $u_id = $session->user_id;
 $q = "Update student_questions set answer=".$_POST["radio"]." where question_id =".$_POST["question_id"]." and user_id=".$u_id;
 echo $q;
 echo "<br>";
+//$GLOBALS['student_answer'] = $_POST["radio"];
 $database->query($q);
 header("Location: homepage.php");
 exit();
