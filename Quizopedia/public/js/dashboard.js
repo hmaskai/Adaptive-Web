@@ -7,9 +7,9 @@ function dashboard(id, fData){
     
     // function to handle histogram.
     function histoGram(fD){
-        var hG={},    hGDim = {t: 60, r: 0, b: 30, l: 0};
-        hGDim.w = 800 - hGDim.l - hGDim.r, 
-        hGDim.h = 300 - hGDim.t - hGDim.b;
+        var hG={},    hGDim = {t: 30, r: 0, b: 100, l: 0};
+        hGDim.w = (screen.width/2.4) - hGDim.l - hGDim.r, 
+        hGDim.h = (screen.height/3.4) - hGDim.t - hGDim.b;
             
         //create svg for histogram.
         var hGsvg = d3.select(id).append("svg")
@@ -28,8 +28,6 @@ function dashboard(id, fData){
 			.selectAll("text")
 			.style("text-anchor", "end")
 			.style("font-size","105%")
-			.attr("dx", "-.8em")
-			.attr("dy", "-.40em")
 			.attr("transform", "rotate(-45)" );
 
         // Create function for y-axis map.
@@ -96,13 +94,13 @@ function dashboard(id, fData){
     
     // function to handle pieChart.
     function pieChart(pD){
-        var pC ={},    pieDim ={w:250, h: 250};
+        var pC ={},    pieDim ={w:250, h: 350};
         pieDim.r = Math.min(pieDim.w, pieDim.h) / 2;
                 
         // create svg for pie chart.
         var piesvg = d3.select(id).append("svg")
             .attr("width", pieDim.w).attr("height", pieDim.h).append("g")
-            .attr("transform", "translate("+pieDim.w/2+","+pieDim.h/2+")");
+            .attr("transform", "translate("+pieDim.w/2+","+pieDim.h/3+")");
         
         // create function to draw the arcs of the pie slices.
         var arc = d3.svg.arc().outerRadius(pieDim.r - 10).innerRadius(0);

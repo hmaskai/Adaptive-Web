@@ -6,7 +6,7 @@ function loadGroupedBarChart(data, noOfStudents){
 	var myData = d3.csv.parse(myDataString);
 	
 	var margin = {top: 20, right: 20, bottom: 50, left: 40},
-	width = (screen.width/3) - margin.left - margin.right,
+	width = (screen.width/2.3) - margin.left - margin.right,
 	height = 500 - margin.top - margin.bottom;
 
 	var x0 = d3.scale.ordinal()

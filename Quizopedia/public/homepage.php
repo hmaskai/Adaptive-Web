@@ -318,7 +318,7 @@
 		 $q="select count(user_id) as count from login" ;
 		 $_GLOBAL['numberOfStudents'] = $database->fetch_array($database->query($q));
 		 ?>
-	<div style="width:50%;text-align:center;float:left;">	 
+	<div style="width:70%;text-align:center;float:left;">	 
 	<text style="font-size:20px;"><b>Class Performance(Quiz-wise)</b></text>
 	<div class='my-legend' style="margin-left:30%;">
 		<div class='legend-scale'>
@@ -332,7 +332,7 @@
 		</div>	
 	</div>
 	</div>
-	<div style="width:50%;text-align:center;float:left;">	 
+	<div style="width:30%;text-align:center;float:left;">	 
 	<text style="font-size:20px;"><b>Leaderboard</b></text>
 	</div>
 	<div id="groupedBarChart" style="clear:left; float:left"></div>
@@ -344,7 +344,7 @@
 	 
 	 
 	 <div>
-	 <div id="topPerformers" style="font-size:20px;width:40%;float:left;">
+	 <div id="topPerformers" style="font-size:20px;width:20%;float:left;">
 	 
 	 <?php  $q= "select l.user_id, CONCAT(l.fname, ' ', l.lname) as name, round( count(s.question_id) * 100 / (select count(question_id) from questions where type='Q'), 2) accuracy from login l left outer JOIN student_questions s on l.user_id = s.user_id left outer join questions q on s.question_id = q.question_id where s.answer = q.correct_answer and q.type = 'Q' GROUP BY s.user_id, l.fname, l.lname ORDER BY accuracy DESC limit 10";
 	 
